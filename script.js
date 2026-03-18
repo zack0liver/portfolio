@@ -19,6 +19,13 @@ const projects = {
     desc: "A recipe manager to clip, organize, and revisit your favorites. Optimized for an old iPad 2 in the kitchen.",
     stack: ["JavaScript", "CSS", "HTML"],
     url: "https://zack0liver.github.io/recipe-clipper/"
+  },
+  spark: {
+    tag: "Creativity",
+    title: "Spark App",
+    desc: "Capture ideas instantly. Never lose a thought again.",
+    stack: ["JavaScript", "Firebase", "Web Speech API"],
+    url: "https://zack0liver.github.io/spark-app/"
   }
 };
 
