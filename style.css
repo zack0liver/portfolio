@@ -126,16 +126,25 @@ section h2 {
   cursor: pointer;
   position: relative;
   will-change: transform;
-  box-shadow:
-    0 2px 4px rgba(0,0,0,0.5),
-    0 4px 8px rgba(0,0,0,0.3),
-    0 1px 0 rgba(255,255,255,0.03) inset;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.5), 0 4px 8px rgba(0,0,0,0.3);
 }
+
+/* Per-project colors applied via JS */
+.spine[data-project="clt"]        .spine-binding { background-color: #071a21; }
+.spine[data-project="clt"]        .spine-body    { background-color: #1a4a5c; }
+.spine[data-project="kettlebell"] .spine-binding { background-color: #1c0d04; }
+.spine[data-project="kettlebell"] .spine-body    { background-color: #4a2210; }
+.spine[data-project="nombook"]    .spine-binding { background-color: #07180a; }
+.spine[data-project="nombook"]    .spine-body    { background-color: #1a4020; }
+
+.spine[data-project="clt"].active        .spine-body::after { background: #3ab8cc; box-shadow: 0 0 10px #3ab8cc; }
+.spine[data-project="kettlebell"].active .spine-body::after { background: #d4621a; box-shadow: 0 0 10px #d4621a; }
+.spine[data-project="nombook"].active    .spine-body::after { background: #3db356; box-shadow: 0 0 10px #3db356; }
 
 .spine-binding {
   width: 14px;
   flex-shrink: 0;
-  background-color: var(--book-dark);
+  background-color: #111;
   position: relative;
 }
 .spine-binding::after {
@@ -148,7 +157,7 @@ section h2 {
 
 .spine-body {
   flex: 1;
-  background-color: var(--book-color);
+  background-color: #1a1a1a;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -177,8 +186,6 @@ section h2 {
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 2px;
-  background: var(--book-accent);
-  box-shadow: 0 0 10px var(--book-accent);
 }
 
 .spine-title {
