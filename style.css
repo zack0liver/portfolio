@@ -69,6 +69,34 @@ main {
   letter-spacing: 0.01em;
 }
 
+/* ── Hero Links ───────────────────────────────────── */
+.hero-links {
+  margin-top: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.hero-links a {
+  font-family: "Lora", serif;
+  font-style: italic;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  color: var(--muted-light);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.hero-links a:hover {
+  color: var(--accent);
+}
+
+.hero-links-dot {
+  color: var(--muted);
+  font-size: 0.7rem;
+}
+
 /* ── Divider ──────────────────────────────────────── */
 .deco-divider {
   display: flex;
