@@ -7,21 +7,15 @@
 
 :root {
   --bg: #0a0d0f;
-  --surface-back: #111518;
+  --surface-back: #0f1316;
   --text: #d4dde0;
   --muted: #6a7d82;
-  --muted-light: #8a9fa5;
+  --muted-light: #92a8ae;
   --accent: #4a7c6f;
-  --accent-dim: rgba(74, 124, 111, 0.15);
-  --fog: rgba(212, 221, 224, 0.06);
   --transition: 0.28s cubic-bezier(0.4, 0, 0.2, 1);
-  --flip: 0.65s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-html {
-  font-size: 16px;
-  scroll-behavior: smooth;
-}
+html { font-size: 16px; scroll-behavior: smooth; }
 
 body {
   background-color: var(--bg);
@@ -50,16 +44,13 @@ body {
 main {
   flex: 1;
   width: 100%;
-  max-width: 900px;
+  max-width: 860px;
   margin: 0 auto;
-  padding: 88px 24px 32px;
+  padding: 88px 24px 48px;
 }
 
 /* ── Hero ─────────────────────────────────────────── */
-.hero {
-  margin-bottom: 48px;
-  text-align: center;
-}
+.hero { margin-bottom: 48px; text-align: center; }
 
 .hero h1 {
   font-family: "Playfair Display", Georgia, serif;
@@ -73,8 +64,7 @@ main {
 .tagline {
   margin-top: 14px;
   color: var(--muted-light);
-  font-size: 0.9rem;
-  font-weight: 400;
+  font-size: 0.88rem;
   font-style: italic;
   letter-spacing: 0.01em;
 }
@@ -86,13 +76,11 @@ main {
   gap: 14px;
   margin-bottom: 52px;
 }
-
 .deco-divider span {
   flex: 1;
   height: 1px;
-  background: linear-gradient(to right, transparent, rgba(74, 124, 111, 0.4), transparent);
+  background: linear-gradient(to right, transparent, rgba(74,124,111,0.4), transparent);
 }
-
 .deco-divider .motif {
   flex: none;
   font-size: 0.6rem;
@@ -103,268 +91,234 @@ main {
 /* ── Section Heading ──────────────────────────────── */
 section h2 {
   font-family: "Playfair Display", serif;
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   font-weight: 400;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
   color: var(--muted);
-  margin-bottom: 40px;
+  margin-bottom: 32px;
   text-align: center;
 }
 
-/* ── Bookshelf ────────────────────────────────────── */
-.bookshelf {
+/* ── Library Layout ───────────────────────────────── */
+.library {
   display: flex;
-  flex-wrap: wrap;
-  gap: 28px;
-  justify-content: center;
-  align-items: flex-end;
-  padding-bottom: 0;
+  align-items: flex-start;
+  gap: 0;
+  min-height: 240px;
 }
 
-/* ── Shelf Shadow (implied shelf) ─────────────────── */
-.shelf-shadow {
-  width: 100%;
-  height: 18px;
-  margin-top: -2px;
-  background: linear-gradient(to bottom,
-    rgba(0, 0, 0, 0.55) 0%,
-    rgba(0, 0, 0, 0.25) 40%,
-    transparent 100%
-  );
-  border-top: 1px solid rgba(74, 124, 111, 0.18);
-  border-radius: 0 0 4px 4px;
-}
-
-/* ── Book ─────────────────────────────────────────── */
-.book {
-  position: relative;
-  width: clamp(150px, 22vw, 200px);
-  height: clamp(225px, 33vw, 300px);
-  perspective: 1200px;
-  text-decoration: none;
-  color: inherit;
+/* ── Spine Stack ──────────────────────────────────── */
+.spine-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
   flex-shrink: 0;
-  box-shadow: 4px 8px 20px rgba(0, 0, 0, 0.6);
-  transition: box-shadow var(--transition);
+  width: 280px;
 }
 
-.book:hover {
-  box-shadow: 8px 16px 36px rgba(0, 0, 0, 0.85);
-}
-
-/* ── Book Flipper ─────────────────────────────────── */
-.book-flipper {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transform-style: preserve-3d;
-  transition: transform var(--flip);
-}
-
-.book:hover .book-flipper {
-  transform: rotateY(180deg);
-}
-
-/* ── Front & Back shared ──────────────────────────── */
-.book-front,
-.book-back {
-  position: absolute;
-  inset: 0;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  border-radius: 2px 3px 3px 2px;
-  overflow: hidden;
-}
-
-/* ── Book Front ───────────────────────────────────── */
-.book-front {
-  background-color: var(--book-color);
+/* ── Individual Spine ─────────────────────────────── */
+.spine {
   display: flex;
+  height: 64px;
+  border-radius: 2px;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  will-change: transform;
+  box-shadow:
+    0 2px 4px rgba(0,0,0,0.5),
+    0 4px 8px rgba(0,0,0,0.3),
+    0 1px 0 rgba(255,255,255,0.03) inset;
 }
 
-.book-spine {
-  width: 18px;
+.spine-binding {
+  width: 14px;
   flex-shrink: 0;
   background-color: var(--book-dark);
-  border-right: 1px solid rgba(255, 255, 255, 0.04);
   position: relative;
 }
-
-/* Spine highlight */
-.book-spine::after {
+.spine-binding::after {
   content: "";
   position: absolute;
   top: 0; left: 0;
-  width: 3px;
-  height: 100%;
-  background: linear-gradient(to right, rgba(255,255,255,0.08), transparent);
+  width: 3px; height: 100%;
+  background: linear-gradient(to right, rgba(255,255,255,0.09), transparent);
 }
 
-.book-cover {
+.spine-body {
   flex: 1;
+  background-color: var(--book-color);
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 18px 14px;
+  justify-content: space-between;
+  padding: 0 16px 0 12px;
   position: relative;
+  overflow: hidden;
 }
 
-/* Subtle inner light from top */
-.book-cover::before {
+/* Subtle surface sheen */
+.spine-body::before {
   content: "";
   position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 40%;
-  background: linear-gradient(to bottom, rgba(255,255,255,0.04), transparent);
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.06) 0%,
+    transparent 50%,
+    rgba(0,0,0,0.1) 100%
+  );
   pointer-events: none;
 }
 
-.cover-frame {
-  width: 100%;
-  height: 100%;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 14px 10px;
-  text-align: center;
+/* Active top-edge accent line */
+.spine.active .spine-body::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--book-accent);
+  box-shadow: 0 0 10px var(--book-accent);
+}
+
+.spine-title {
+  font-family: "Playfair Display", serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.85);
+  letter-spacing: 0.03em;
   position: relative;
 }
 
-/* Corner ornaments on cover frame */
-.cover-frame::before,
-.cover-frame::after {
-  content: "";
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  border-color: rgba(255, 255, 255, 0.2);
-  border-style: solid;
-}
-.cover-frame::before {
-  top: 4px; left: 4px;
-  border-width: 1px 0 0 1px;
-}
-.cover-frame::after {
-  bottom: 4px; right: 4px;
-  border-width: 0 1px 1px 0;
-}
-
-.cover-motif {
-  font-size: 0.45rem;
-  letter-spacing: 0.25em;
-  color: rgba(255, 255, 255, 0.25);
-  margin-bottom: 4px;
-}
-
-.cover-title {
-  font-family: "Playfair Display", serif;
-  font-size: clamp(0.85rem, 2vw, 1rem);
-  font-weight: 700;
-  line-height: 1.2;
-  color: rgba(255, 255, 255, 0.88);
-  letter-spacing: 0.04em;
-  text-align: center;
-}
-
-.cover-rule {
-  width: 40%;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.2);
-  margin: 2px auto;
-}
-
-.cover-tag {
+.spine-tag {
+  font-family: "Lora", serif;
   font-size: 0.5rem;
-  letter-spacing: 0.2em;
+  font-style: italic;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.35);
+  color: rgba(255,255,255,0.3);
+  position: relative;
+  flex-shrink: 0;
+}
+
+/* ── Book Panel ───────────────────────────────────── */
+.book-panel {
+  flex: 1;
+  padding: 0 0 0 48px;
+  min-height: 220px;
+  display: flex;
+  align-items: center;
+}
+
+/* ── Hint ─────────────────────────────────────────── */
+.panel-hint {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--muted);
   font-family: "Lora", serif;
   font-style: italic;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
 }
 
-/* ── Book Back ────────────────────────────────────── */
-.book-back {
-  background-color: var(--surface-back);
-  transform: rotateY(180deg);
-  padding: 22px 18px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  border-left: 3px solid var(--book-color);
-  justify-content: center;
+.hint-arrow {
+  display: inline-block;
+  animation: nudge 2.4s ease-in-out infinite;
 }
 
-.back-tag {
-  font-size: 0.55rem;
+@keyframes nudge {
+  0%, 100% { transform: translateX(0); }
+  50%       { transform: translateX(-7px); }
+}
+
+/* ── Panel Content ────────────────────────────────── */
+.panel-content {
+  width: 100%;
+  display: none;
+  overflow: hidden;
+}
+
+.panel-item {
+  will-change: transform, opacity;
+}
+
+.panel-tag {
+  display: inline-block;
+  font-family: "Lora", serif;
+  font-style: italic;
+  font-size: 0.58rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--accent);
-  font-style: italic;
 }
 
-.book-back h3 {
+.panel-title {
   font-family: "Playfair Display", serif;
-  font-size: 0.95rem;
-  font-weight: 600;
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  font-weight: 700;
   color: var(--text);
-  line-height: 1.2;
+  line-height: 1.15;
+  margin-top: 8px;
+  overflow: hidden;
 }
 
-.book-back p {
-  font-size: 0.75rem;
+.panel-desc {
+  font-size: 0.83rem;
   color: var(--muted-light);
-  line-height: 1.6;
+  line-height: 1.7;
+  margin-top: 14px;
   font-weight: 400;
 }
 
-/* ── Stack Pills ──────────────────────────────────── */
-.stack {
+/* ── Panel Stack ──────────────────────────────────── */
+.panel-stack {
   display: flex;
   flex-wrap: wrap;
-  gap: 5px;
-  margin-top: 2px;
+  gap: 6px;
+  margin-top: 18px;
 }
 
-.stack span {
-  font-size: 0.55rem;
-  letter-spacing: 0.1em;
+.panel-stack span {
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--muted);
-  border: 1px solid rgba(74, 124, 111, 0.2);
-  padding: 2px 6px;
+  border: 1px solid rgba(74,124,111,0.22);
+  padding: 3px 8px;
   font-style: normal;
   font-family: "Lora", serif;
 }
 
-.back-arrow {
-  font-size: 0.65rem;
-  letter-spacing: 0.12em;
+/* ── Panel Link ───────────────────────────────────── */
+.panel-link {
+  display: inline-block;
+  margin-top: 22px;
+  font-family: "Lora", serif;
+  font-size: 0.68rem;
+  font-style: italic;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--accent);
-  margin-top: auto;
-  padding-top: 8px;
-  transition: color var(--transition);
-  font-style: italic;
+  text-decoration: none;
+  transition: color 0.22s ease, letter-spacing 0.22s ease;
 }
 
-.book:hover .back-arrow {
+.panel-link:hover {
   color: var(--text);
+  letter-spacing: 0.2em;
 }
 
 /* ── Footer ───────────────────────────────────────── */
 footer {
   text-align: center;
-  padding: 48px 24px 32px;
+  padding: 52px 24px 32px;
   color: var(--muted);
+  font-family: "Lora", serif;
+  font-style: italic;
   font-size: 0.65rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  font-family: "Lora", serif;
-  font-style: italic;
 }
 
 footer a {
@@ -372,10 +326,7 @@ footer a {
   text-decoration: none;
   transition: color var(--transition);
 }
-
-footer a:hover {
-  color: var(--accent);
-}
+footer a:hover { color: var(--accent); }
 
 /* ── Animations ───────────────────────────────────── */
 @keyframes fadeUp {
@@ -385,23 +336,24 @@ footer a:hover {
 
 .fade-in {
   opacity: 0;
-  animation: fadeUp 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: fadeUp 0.7s cubic-bezier(0.4,0,0.2,1) forwards;
 }
-
 .delay-1 { animation-delay: 0.15s; }
 .delay-2 { animation-delay: 0.3s; }
 
-/* ── Responsive ───────────────────────────────────── */
-@media (max-width: 540px) {
-  main {
-    padding: 60px 20px 24px;
+/* ── Mobile ───────────────────────────────────────── */
+@media (max-width: 640px) {
+  main { padding: 60px 20px 32px; }
+
+  .library {
+    flex-direction: column;
+    gap: 32px;
   }
 
-  .bookshelf {
-    gap: 16px;
-  }
+  .spine-stack { width: 100%; }
 
-  .book {
-    width: clamp(120px, 40vw, 160px);
+  .book-panel {
+    padding: 0;
+    width: 100%;
   }
 }
