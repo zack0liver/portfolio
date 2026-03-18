@@ -140,11 +140,17 @@ section h2 {
 .book {
   position: relative;
   width: clamp(150px, 22vw, 200px);
-  aspect-ratio: 2 / 3;
+  height: clamp(225px, 33vw, 300px);
   perspective: 1200px;
   text-decoration: none;
   color: inherit;
   flex-shrink: 0;
+  box-shadow: 4px 8px 20px rgba(0, 0, 0, 0.6);
+  transition: box-shadow var(--transition);
+}
+
+.book:hover {
+  box-shadow: 8px 16px 36px rgba(0, 0, 0, 0.85);
 }
 
 /* ── Book Flipper ─────────────────────────────────── */
@@ -154,12 +160,10 @@ section h2 {
   height: 100%;
   transform-style: preserve-3d;
   transition: transform var(--flip);
-  filter: drop-shadow(4px 6px 16px rgba(0, 0, 0, 0.6));
 }
 
 .book:hover .book-flipper {
   transform: rotateY(180deg);
-  filter: drop-shadow(8px 12px 28px rgba(0, 0, 0, 0.8));
 }
 
 /* ── Front & Back shared ──────────────────────────── */
