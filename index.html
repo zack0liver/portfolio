@@ -6,7 +6,7 @@
   <title>Zack Oliver</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lora:wght@300;400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -15,75 +15,102 @@
   <main>
     <header class="hero fade-in">
       <h1>Zack Oliver</h1>
-      <p class="tagline">Experienced analytics and SaaS leader who also tinkers with code and GenAI.</p>
+      <p class="tagline">Customer success &amp; implementation leader. Builder of random things because I can't help myself.</p>
     </header>
 
     <div class="deco-divider fade-in delay-1">
-      <span></span><span class="diamond">◆</span><span></span>
+      <span></span><span class="motif">△</span><span></span>
     </div>
 
-    <section class="projects fade-in delay-1">
+    <section class="projects fade-in delay-2">
       <h2>Projects</h2>
-      <div class="grid">
 
-        <a class="card" href="https://cltstartups.com/" target="_blank" rel="noopener">
-          <div class="card-inner">
-            <div class="card-top">
-              <span class="tag">Directory</span>
+      <div class="bookshelf">
+
+        <a class="book" href="https://cltstartups.com/" target="_blank" rel="noopener" style="--book-color:#0d2b35; --book-dark:#071a21; --book-light:#1a4455;">
+          <div class="book-flipper">
+            <div class="book-front">
+              <div class="book-spine"></div>
+              <div class="book-cover">
+                <div class="cover-frame">
+                  <div class="cover-motif">△ △ △</div>
+                  <div class="cover-title">Charlotte<br>Startup<br>Index</div>
+                  <div class="cover-rule"></div>
+                  <div class="cover-tag">Directory</div>
+                </div>
+              </div>
             </div>
-            <div class="card-logo">
-              <img src="cltstartups.png" alt="Charlotte Startup Index screenshot" />
-            </div>
-            <h3>Charlotte Startup Index</h3>
-            <p>A searchable directory for discovering startups in the Charlotte area. Filter by industry, stage, and more.</p>
-            <div class="stack">
-              <span>JavaScript</span>
-              <span>Google Sheets</span>
-              <span>HTML/CSS</span>
+            <div class="book-back">
+              <div class="back-tag">Directory</div>
+              <h3>Charlotte Startup Index</h3>
+              <p>A searchable directory for discovering startups in the Charlotte area. Filter by industry, stage, and more.</p>
+              <div class="stack">
+                <span>JavaScript</span>
+                <span>Google Sheets</span>
+                <span>HTML/CSS</span>
+              </div>
+              <div class="back-arrow">Visit Project ↗</div>
             </div>
           </div>
-          <div class="card-arrow">↗</div>
         </a>
 
-        <a class="card" href="https://zack0liver.github.io/kettlebell-app/" target="_blank" rel="noopener">
-          <div class="card-inner">
-            <div class="card-top">
-              <span class="tag">Fitness</span>
+        <a class="book" href="https://zack0liver.github.io/kettlebell-app/" target="_blank" rel="noopener" style="--book-color:#2e1508; --book-dark:#1c0d04; --book-light:#4a2510;">
+          <div class="book-flipper">
+            <div class="book-front">
+              <div class="book-spine"></div>
+              <div class="book-cover">
+                <div class="cover-frame">
+                  <div class="cover-motif">△ △ △</div>
+                  <div class="cover-title">Kettlebell<br>Genie</div>
+                  <div class="cover-rule"></div>
+                  <div class="cover-tag">Fitness</div>
+                </div>
+              </div>
             </div>
-            <div class="card-logo">
-              <img src="kettlebell.png" alt="Kettlebell Genie screenshot" />
-            </div>
-            <h3>Kettlebell Genie</h3>
-            <p>Generates custom kettlebell workouts and tracks your progress over time. Sign in with Google to save your history.</p>
-            <div class="stack">
-              <span>JavaScript</span>
-              <span>Google Auth</span>
-              <span>Cloud Storage</span>
+            <div class="book-back">
+              <div class="back-tag">Fitness</div>
+              <h3>Kettlebell Genie</h3>
+              <p>Generates custom kettlebell workouts and tracks your progress over time. Sign in with Google to save your history.</p>
+              <div class="stack">
+                <span>JavaScript</span>
+                <span>Google Auth</span>
+                <span>Cloud Storage</span>
+              </div>
+              <div class="back-arrow">Visit Project ↗</div>
             </div>
           </div>
-          <div class="card-arrow">↗</div>
         </a>
 
-        <a class="card" href="https://zack0liver.github.io/recipe-clipper/" target="_blank" rel="noopener">
-          <div class="card-inner">
-            <div class="card-top">
-              <span class="tag">Productivity</span>
+        <a class="book" href="https://zack0liver.github.io/recipe-clipper/" target="_blank" rel="noopener" style="--book-color:#0d2710; --book-dark:#07180a; --book-light:#1a3f1e;">
+          <div class="book-flipper">
+            <div class="book-front">
+              <div class="book-spine"></div>
+              <div class="book-cover">
+                <div class="cover-frame">
+                  <div class="cover-motif">△ △ △</div>
+                  <div class="cover-title">Nom<br>Book</div>
+                  <div class="cover-rule"></div>
+                  <div class="cover-tag">Productivity</div>
+                </div>
+              </div>
             </div>
-            <div class="card-logo">
-              <img src="nombook.png" alt="NomBook logo" />
-            </div>
-            <h3>NomBook</h3>
-            <p>A recipe manager that lets you clip, organize, and revisit your favorite recipes in one place. Optimized for use on an old iPad 2 in the kitchen.</p>
-            <div class="stack">
-              <span>JavaScript</span>
-              <span>CSS</span>
-              <span>HTML</span>
+            <div class="book-back">
+              <div class="back-tag">Productivity</div>
+              <h3>NomBook</h3>
+              <p>A recipe manager to clip, organize, and revisit your favorites. Optimized for an old iPad 2 in the kitchen.</p>
+              <div class="stack">
+                <span>JavaScript</span>
+                <span>CSS</span>
+                <span>HTML</span>
+              </div>
+              <div class="back-arrow">Visit Project ↗</div>
             </div>
           </div>
-          <div class="card-arrow">↗</div>
         </a>
 
       </div>
+
+      <div class="shelf-shadow"></div>
     </section>
   </main>
 
