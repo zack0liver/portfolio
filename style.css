@@ -94,31 +94,33 @@ main::after {
 /* ── Hero ─────────────────────────────────────────── */
 .hero { margin-bottom: 40px; text-align: center; position: relative; }
 
-/* Issue stamp above name */
-.hero::before {
-  content: "No. 01";
-  display: block;
-  font-family: "Lora", serif;
-  font-style: italic;
-  font-size: 0.58rem;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: var(--ink-2);
-  margin-bottom: 10px;
-  opacity: 0.85;
-}
-
 .hero h1 {
   font-family: "Playfair Display", Georgia, serif;
-  font-size: clamp(2.4rem, 6vw, 4.4rem);
   font-weight: 700;
-  letter-spacing: 0.04em;
-  line-height: 1.05;
+  line-height: 1;
   color: var(--ink);
-  /* Risograph misregistration: offset coral shadow */
+}
+
+.name-first {
+  display: block;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(0.85rem, 2vw, 1.05rem);
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  margin-bottom: 6px;
+}
+
+.name-last {
+  display: block;
+  font-size: clamp(3.2rem, 8vw, 5.6rem);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
   text-shadow:
-    3px 3px 0 rgba(232, 75, 46, 0.28),
-    -1px -1px 0 rgba(28, 79, 138, 0.1);
+    5px 5px 0 rgba(232, 75, 46, 0.42),
+    -2px -2px 0 rgba(28, 79, 138, 0.14);
 }
 
 .tagline {
@@ -159,21 +161,44 @@ main::after {
 .deco-divider {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 10px;
   margin-bottom: 48px;
+  cursor: pointer;
+  user-select: none;
 }
 
-.deco-divider span {
+.divider-rule {
   flex: 1;
-  height: 1px;
-  background: rgba(28,43,74,0.18);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  height: 1em;
 }
 
-.deco-divider .motif {
-  flex: none;
-  font-size: 0.55rem;
+.divider-rule::before {
+  content: "+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +";
+  font-family: "Lora", serif;
+  font-size: 0.48rem;
+  letter-spacing: 0.55em;
+  color: rgba(28,43,74,0.18);
+  white-space: nowrap;
+}
+
+.divider-center {
+  flex-shrink: 0;
+  font-family: "Lora", serif;
+  font-size: 0.9rem;
+  font-style: normal;
   color: var(--ink-2);
-  opacity: 0.75;
+  opacity: 0.85;
+  line-height: 1;
+  transition: transform 0.3s ease;
+  width: 1em;
+  text-align: center;
+}
+
+.deco-divider.expanded .divider-center {
+  content: "−";
 }
 
 /* ── Section Heading ──────────────────────────────── */
@@ -188,6 +213,24 @@ section h2 {
   margin-bottom: 28px;
   text-align: center;
   opacity: 0.85;
+}
+
+section.collapsed h2 {
+  margin-bottom: 0;
+}
+
+/* ── Collapsible Section Body ─────────────────────── */
+.section-body {
+  overflow: hidden;
+  max-height: 4000px;
+  opacity: 1;
+  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease;
+}
+
+section.collapsed .section-body {
+  max-height: 0;
+  opacity: 0;
+  pointer-events: none;
 }
 
 /* ── Library Layout ───────────────────────────────── */
@@ -492,9 +535,9 @@ section h2 {
   display: flex;
   align-items: baseline;
   gap: 16px;
-  margin-top: 28px;
-  padding-top: 18px;
-  border-top: 1px solid rgba(28,43,74,0.1);
+  margin-bottom: 28px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(28,43,74,0.1);
   flex-wrap: wrap;
 }
 

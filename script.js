@@ -121,6 +121,28 @@ function openProject(spine) {
   }, "-=0.1");
 }
 
+// ── Collapsible sections ───────────────────────────────
+function toggleSection(section) {
+  section.classList.toggle("collapsed");
+  const isCollapsed = section.classList.contains("collapsed");
+  const divider = document.querySelector(`.deco-divider[data-target="${section.id}"]`);
+  if (divider) {
+    divider.querySelector(".divider-center").textContent = isCollapsed ? "+" : "−";
+    divider.classList.toggle("expanded", !isCollapsed);
+  }
+}
+
+document.querySelectorAll("section h2").forEach(h2 => {
+  h2.addEventListener("click", () => toggleSection(h2.closest("section")));
+});
+
+document.querySelectorAll(".deco-divider[data-target]").forEach(divider => {
+  divider.addEventListener("click", () => {
+    const section = document.getElementById(divider.dataset.target);
+    if (section) toggleSection(section);
+  });
+});
+
 // ── Hover: magnetic y-axis drift ──────────────────────
 spines.forEach(spine => {
   spine.addEventListener("mouseenter", () => {
