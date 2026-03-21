@@ -219,14 +219,13 @@ main::after {
 .collapsible-header:hover { opacity: 0.65; }
 
 .collapsible-title {
-  font-family: "Lora", serif;
-  font-size: 0.6rem;
-  font-weight: 400;
-  font-style: italic;
-  letter-spacing: 0.3em;
+  font-family: "Playfair Display", serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  font-style: normal;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
   color: var(--ink-2);
-  opacity: 0.85;
 }
 
 .collapsible-icon {
@@ -258,6 +257,8 @@ main::after {
   font-size: 0.88rem;
   color: var(--muted-light);
   line-height: 1.8;
+  width: 100%;
+  display: block;
 }
 
 .bio-text + .bio-text {
@@ -268,9 +269,10 @@ main::after {
 .ext-links {
   display: flex;
   gap: 16px;
+  width: 100%;
 }
 
-.ext-link {
+a.ext-link {
   flex: 1;
   display: flex;
   align-items: center;
@@ -282,16 +284,17 @@ main::after {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   text-decoration: none;
-  color: var(--bg-paper);
+  color: var(--bg-paper) !important;
   background: var(--ink-2);
   border-radius: 1px;
   box-shadow: 3px 3px 0 rgba(28,43,74,0.3);
   transition: background 0.22s ease, box-shadow 0.22s ease;
 }
 
-.ext-link:hover {
+a.ext-link:hover {
   background: var(--ink);
   box-shadow: 5px 5px 0 rgba(28,43,74,0.3);
+  color: var(--bg-paper) !important;
 }
 
 /* ── Library Layout ───────────────────────────────── */
