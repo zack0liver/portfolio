@@ -258,7 +258,6 @@ main::after {
   font-size: 0.88rem;
   color: var(--muted-light);
   line-height: 1.8;
-  max-width: 600px;
 }
 
 .bio-text + .bio-text {
