@@ -164,10 +164,13 @@ section h2 {
 .spine[data-project="kettlebell"] .spine-body    { background-color: #4a2210; }
 .spine[data-project="nombook"]    .spine-binding { background-color: #07180a; }
 .spine[data-project="nombook"]    .spine-body    { background-color: #1a4020; }
+.spine[data-project="spark"]      .spine-binding { background-color: #150e1f; }
+.spine[data-project="spark"]      .spine-body    { background-color: #2d1a4a; }
 
 .spine[data-project="clt"].active        .spine-body::after { background: #3ab8cc; box-shadow: 0 0 10px #3ab8cc; }
 .spine[data-project="kettlebell"].active .spine-body::after { background: #d4621a; box-shadow: 0 0 10px #d4621a; }
 .spine[data-project="nombook"].active    .spine-body::after { background: #3db356; box-shadow: 0 0 10px #3db356; }
+.spine[data-project="spark"].active      .spine-body::after { background: #a855f7; box-shadow: 0 0 10px #a855f7; }
 
 .spine-binding {
   width: 14px;
@@ -327,21 +330,41 @@ section h2 {
 
 /* ── Panel Link ───────────────────────────────────── */
 .panel-link {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
   margin-top: 22px;
   font-family: "Lora", serif;
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   font-style: italic;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--accent);
   text-decoration: none;
-  transition: color 0.22s ease, letter-spacing 0.22s ease;
+  border: 1px solid rgba(74,124,111,0.45);
+  padding: 8px 16px;
+  border-radius: 2px;
+  transition: color 0.22s ease, background 0.22s ease, border-color 0.22s ease, gap 0.22s ease;
+  position: relative;
+}
+
+.panel-link::after {
+  content: "↗";
+  font-style: normal;
+  font-size: 0.78rem;
+  transition: transform 0.22s ease;
+  display: inline-block;
 }
 
 .panel-link:hover {
   color: var(--text);
-  letter-spacing: 0.2em;
+  background: rgba(74,124,111,0.1);
+  border-color: rgba(74,124,111,0.7);
+  gap: 10px;
+}
+
+.panel-link:hover::after {
+  transform: translate(2px, -2px);
 }
 
 /* ── Footer ───────────────────────────────────────── */
@@ -382,13 +405,28 @@ footer a:hover { color: var(--accent); }
 
   .library {
     flex-direction: column;
-    gap: 32px;
+    gap: 24px;
   }
 
   .spine-stack { width: 100%; }
 
   .book-panel {
-    padding: 0;
+    padding: 24px 0 0;
     width: 100%;
+    border-top: 1px solid rgba(74,124,111,0.18);
+  }
+
+  .book-panel .panel-hint {
+    padding: 8px 0;
+  }
+
+  .panel-title {
+    font-size: clamp(1.3rem, 5vw, 1.6rem);
+  }
+
+  .panel-link {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
   }
 }

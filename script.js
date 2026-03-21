@@ -112,6 +112,13 @@ function openProject(spine) {
     duration: 0.4,
     ease: "power2.out"
   }, "-=0.28");
+
+  // ── Scroll panel into view on mobile ─────────────────
+  tl.add(() => {
+    if (window.innerWidth <= 640) {
+      panelContent.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+  }, "-=0.1");
 }
 
 // ── Hover: magnetic y-axis drift ──────────────────────
