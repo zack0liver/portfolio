@@ -167,19 +167,8 @@ main::after {
 
 .divider-rule {
   flex: 1;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  height: 1em;
-}
-
-.divider-rule::before {
-  content: "+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +";
-  font-family: "Lora", serif;
-  font-size: 0.48rem;
-  letter-spacing: 0.55em;
-  color: rgba(28,43,74,0.18);
-  white-space: nowrap;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(28,43,74,0.18), transparent);
 }
 
 .divider-center {
