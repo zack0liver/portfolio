@@ -430,6 +430,64 @@ section h2 {
   transform: translate(2px, -2px);
 }
 
+/* ── Publications ─────────────────────────────────── */
+.pub-list {
+  list-style: none;
+}
+
+.pub-item {
+  display: flex;
+  gap: 24px;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(28,43,74,0.1);
+}
+
+.pub-item:first-child {
+  border-top: 1px solid rgba(28,43,74,0.1);
+}
+
+.pub-year {
+  font-family: "Lora", serif;
+  font-style: italic;
+  font-size: 0.7rem;
+  color: var(--ink-2);
+  letter-spacing: 0.06em;
+  flex-shrink: 0;
+  width: 36px;
+  padding-top: 3px;
+}
+
+.pub-body { flex: 1; }
+
+.pub-authors {
+  font-size: 0.75rem;
+  color: var(--muted);
+  letter-spacing: 0.01em;
+  line-height: 1.5;
+}
+
+.pub-authors strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.pub-title {
+  font-family: "Playfair Display", serif;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.4;
+  margin-top: 5px;
+}
+
+.pub-venue {
+  font-size: 0.7rem;
+  font-style: italic;
+  color: var(--muted);
+  margin-top: 4px;
+  letter-spacing: 0.02em;
+}
+
 /* ── Footer ───────────────────────────────────────── */
 footer {
   text-align: center;
