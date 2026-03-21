@@ -62,7 +62,7 @@ function openProject(spine) {
       s.classList.remove("active");
       tl.to(s, { x: 0, duration: 0.3, ease: "power3.in" }, 0);
     }
-    tl.to(s, { opacity: s === spine ? 1 : 0.35, duration: 0.3 }, 0);
+    tl.to(s, { opacity: s === spine ? 1 : 0.5, duration: 0.3 }, 0);
   });
 
   spine.classList.add("active");
@@ -112,6 +112,13 @@ function openProject(spine) {
     duration: 0.4,
     ease: "power2.out"
   }, "-=0.28");
+
+  // ── Scroll panel into view on mobile ─────────────────
+  tl.add(() => {
+    if (window.innerWidth <= 640) {
+      panelContent.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+  }, "-=0.1");
 }
 
 // ── Hover: magnetic y-axis drift ──────────────────────
