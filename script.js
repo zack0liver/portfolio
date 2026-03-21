@@ -122,24 +122,27 @@ function openProject(spine) {
 }
 
 // ── Collapsible sections ───────────────────────────────
-function toggleSection(section) {
-  section.classList.toggle("collapsed");
-  const isCollapsed = section.classList.contains("collapsed");
-  const divider = document.querySelector(`.deco-divider[data-target="${section.id}"]`);
-  if (divider) {
-    divider.querySelector(".divider-center").textContent = isCollapsed ? "+" : "−";
-    divider.classList.toggle("expanded", !isCollapsed);
-  }
-}
+document.querySelectorAll('.collapsible-header').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const body = btn.nextElementSibling;
+    const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+    const icon = btn.querySelector('.collapsible-icon');
 
-document.querySelectorAll("section h2").forEach(h2 => {
-  h2.addEventListener("click", () => toggleSection(h2.closest("section")));
-});
-
-document.querySelectorAll(".deco-divider[data-target]").forEach(divider => {
-  divider.addEventListener("click", () => {
-    const section = document.getElementById(divider.dataset.target);
-    if (section) toggleSection(section);
+    if (!isExpanded) {
+      btn.setAttribute('aria-expanded', 'true');
+      icon.textContent = '−';
+      body.style.height = body.scrollHeight + 'px';
+      body.addEventListener('transitionend', () => {
+        body.style.height = 'auto';
+      }, { once: true });
+    } else {
+      body.style.height = body.scrollHeight + 'px';
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        body.style.height = '0';
+      }));
+      btn.setAttribute('aria-expanded', 'false');
+      icon.textContent = '+';
+    }
   });
 });
 

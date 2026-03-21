@@ -163,8 +163,6 @@ main::after {
   align-items: center;
   gap: 10px;
   margin-bottom: 48px;
-  cursor: pointer;
-  user-select: none;
 }
 
 .divider-rule {
@@ -197,12 +195,30 @@ main::after {
   text-align: center;
 }
 
-.deco-divider.expanded .divider-center {
-  content: "−";
+/* ── Collapsible Sections ─────────────────────────── */
+.collapsible {
+  border-top: 1px solid rgba(28, 43, 74, 0.2);
 }
 
-/* ── Section Heading ──────────────────────────────── */
-section h2 {
+.collapsible--last {
+  border-bottom: 1px solid rgba(28, 43, 74, 0.2);
+}
+
+.collapsible-header {
+  width: 100%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 0;
+  transition: opacity var(--transition);
+}
+
+.collapsible-header:hover { opacity: 0.65; }
+
+.collapsible-title {
   font-family: "Lora", serif;
   font-size: 0.6rem;
   font-weight: 400;
@@ -210,27 +226,43 @@ section h2 {
   letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--ink-2);
-  margin-bottom: 28px;
-  text-align: center;
   opacity: 0.85;
 }
 
-section.collapsed h2 {
-  margin-bottom: 0;
+.collapsible-icon {
+  font-family: "Lora", serif;
+  font-size: 1rem;
+  color: var(--ink-2);
+  line-height: 1;
+  flex-shrink: 0;
+  opacity: 0.7;
+  transition: opacity var(--transition);
 }
 
-/* ── Collapsible Section Body ─────────────────────── */
-.section-body {
-  overflow: hidden;
-  max-height: 4000px;
+.collapsible-header[aria-expanded="true"] .collapsible-icon {
   opacity: 1;
-  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease;
 }
 
-section.collapsed .section-body {
-  max-height: 0;
-  opacity: 0;
-  pointer-events: none;
+.collapsible-body {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.collapsible-body-inner {
+  padding-bottom: 36px;
+}
+
+/* ── Bio ──────────────────────────────────────────── */
+.bio-text {
+  font-size: 0.88rem;
+  color: var(--muted-light);
+  line-height: 1.8;
+  max-width: 600px;
+}
+
+.bio-text + .bio-text {
+  margin-top: 16px;
 }
 
 /* ── Library Layout ───────────────────────────────── */
