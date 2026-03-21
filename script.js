@@ -121,6 +121,13 @@ function openProject(spine) {
   }, "-=0.1");
 }
 
+// ── Collapsible sections ───────────────────────────────
+document.querySelectorAll("section h2").forEach(h2 => {
+  h2.addEventListener("click", () => {
+    h2.closest("section").classList.toggle("collapsed");
+  });
+});
+
 // ── Hover: magnetic y-axis drift ──────────────────────
 spines.forEach(spine => {
   spine.addEventListener("mouseenter", () => {
