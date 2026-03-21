@@ -62,7 +62,7 @@ function openProject(spine) {
       s.classList.remove("active");
       tl.to(s, { x: 0, duration: 0.3, ease: "power3.in" }, 0);
     }
-    tl.to(s, { opacity: s === spine ? 1 : 0.35, duration: 0.3 }, 0);
+    tl.to(s, { opacity: s === spine ? 1 : 0.5, duration: 0.3 }, 0);
   });
 
   spine.classList.add("active");
