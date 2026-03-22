@@ -601,30 +601,18 @@ a.ext-link:hover {
 
 /* ── Publication Tags ─────────────────────────────── */
 .pub-tag {
-  display: inline-block;
-  margin-top: 6px;
+  flex-shrink: 0;
+  align-self: flex-start;
+  margin-top: 3px;
   font-family: "Lora", serif;
   font-size: 0.58rem;
-  font-style: italic;
+  font-style: normal;
   letter-spacing: 0.12em;
-  text-transform: lowercase;
-  padding: 2px 8px;
-  border-radius: 1px;
-}
-
-.pub-tag--healthcare {
-  color: #1f7a5a;
-  border: 1px solid rgba(31,122,90,0.35);
-}
-
-.pub-tag--startups {
-  color: var(--ink-2);
-  border: 1px solid rgba(232,75,46,0.35);
-}
-
-.pub-tag--innovation {
-  color: var(--ink);
-  border: 1px solid rgba(28,43,74,0.3);
+  text-transform: uppercase;
+  padding: 3px 8px;
+  color: var(--muted);
+  border: 1px solid rgba(28,43,74,0.2);
+  background: rgba(28,43,74,0.04);
 }
 
 a.pub-link {
