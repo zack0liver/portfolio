@@ -324,21 +324,19 @@ a.ext-link:hover {
   box-shadow: 5px 5px 0 rgba(28,43,74,0.22);
 }
 
-/* Per-project binding + body colors */
-.spine[data-project="clt"]        .spine-binding { background-color: #1c5082; }
-.spine[data-project="clt"]        .spine-body    { background-color: #eef3fb; }
-.spine[data-project="kettlebell"] .spine-binding { background-color: #c13820; }
-.spine[data-project="kettlebell"] .spine-body    { background-color: #fdf0ee; }
+/* Per-project binding colors — all bodies use warm parchment */
+.spine[data-project="clt"]        .spine-binding { background-color: #1c2b4a; }
+.spine[data-project="kettlebell"] .spine-binding { background-color: #e84b2e; }
 .spine[data-project="nombook"]    .spine-binding { background-color: #1f7a5a; }
-.spine[data-project="nombook"]    .spine-body    { background-color: #edf7f3; }
-.spine[data-project="spark"]      .spine-binding { background-color: #6b31a6; }
-.spine[data-project="spark"]      .spine-body    { background-color: #f4eefb; }
+.spine[data-project="spark"]      .spine-binding { background-color: #8a6a3a; }
+
+.spine .spine-body { background-color: var(--bg-paper); }
 
 /* Active accent line */
-.spine[data-project="clt"].active        .spine-body::after { background: #1c5082; }
-.spine[data-project="kettlebell"].active .spine-body::after { background: #c13820; }
+.spine[data-project="clt"].active        .spine-body::after { background: #1c2b4a; }
+.spine[data-project="kettlebell"].active .spine-body::after { background: #e84b2e; }
 .spine[data-project="nombook"].active    .spine-body::after { background: #1f7a5a; }
-.spine[data-project="spark"].active      .spine-body::after { background: #6b31a6; }
+.spine[data-project="spark"].active      .spine-body::after { background: #8a6a3a; }
 
 .spine-binding {
   width: 14px;
