@@ -506,10 +506,8 @@ a.ext-link:hover {
   border: none;
   padding: 9px 20px;
   border-radius: 1px;
-  /* Flat offset shadow = print misalignment */
   box-shadow: 3px 3px 0 rgba(28,43,74,0.3);
   transition: background 0.22s ease, box-shadow 0.22s ease, gap 0.22s ease;
-  position: relative;
 }
 
 
@@ -517,10 +515,6 @@ a.ext-link:hover {
   background: var(--ink);
   box-shadow: 5px 5px 0 rgba(28,43,74,0.3);
   gap: 10px;
-}
-
-.panel-link:hover::after {
-  transform: translate(2px, -2px);
 }
 
 /* ── Publications ─────────────────────────────────── */
