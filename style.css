@@ -300,6 +300,7 @@ a.ext-link:hover {
   cursor: pointer;
   position: relative;
   will-change: transform;
+  touch-action: manipulation;
   /* Flat ink shadow */
   box-shadow: 3px 3px 0 rgba(28,43,74,0.18);
   transition: box-shadow 0.22s ease;
@@ -412,6 +413,16 @@ a.ext-link:hover {
 @keyframes nudge {
   0%, 100% { transform: translateX(0); }
   50%       { transform: translateX(-7px); }
+}
+
+/* Down-pointing hint arrow for mobile stacked layout */
+@keyframes nudge-down {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(7px); }
+}
+
+.hint-arrow--down {
+  animation: nudge-down 2.4s ease-in-out infinite;
 }
 
 /* ── Panel Content ────────────────────────────────── */
@@ -533,7 +544,7 @@ a.ext-link:hover {
   padding-top: 3px;
 }
 
-.pub-body { flex: 1; }
+.pub-body { flex: 1; min-width: 0; }
 
 .pub-authors {
   font-size: 0.75rem;
@@ -691,5 +702,30 @@ footer a:hover { color: var(--ink-2); }
     width: 100%;
     justify-content: center;
     text-align: center;
+  }
+
+  /* Pub items: wrap tag to its own row */
+  .pub-item {
+    flex-wrap: wrap;
+    row-gap: 8px;
+  }
+
+  .pub-body {
+    flex: 1 1 calc(100% - 60px);
+  }
+
+  .pub-tag {
+    margin-left: 60px;
+    align-self: auto;
+    margin-top: 0;
+  }
+}
+
+/* ── Touch devices: suppress pointer-only hover effects ── */
+@media (hover: none) {
+  .collapsible-header:hover { opacity: 1; }
+
+  .spine:hover {
+    box-shadow: 3px 3px 0 rgba(28,43,74,0.18);
   }
 }

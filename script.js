@@ -25,7 +25,7 @@ const projects = {
     title: "Spark App",
     desc: "Capture ideas instantly. Never lose a thought again.",
     stack: ["JavaScript", "Firebase", "Web Speech API"],
-    url: "https://zack0liver.github.io/spark-app/"
+    url: "https://zack0oliver.github.io/spark-app/"
   }
 };
 
@@ -35,6 +35,21 @@ const panelContent = document.getElementById("panelContent");
 
 let currentKey   = null;
 let isAnimating  = false;
+
+// ── Hint arrow direction (panel is below spines on mobile) ──
+function updateHintDirection() {
+  const arrow = panelHint.querySelector('.hint-arrow');
+  if (window.innerWidth <= 640) {
+    arrow.textContent = '\u2193';
+    arrow.classList.add('hint-arrow--down');
+  } else {
+    arrow.textContent = '\u2190';
+    arrow.classList.remove('hint-arrow--down');
+  }
+}
+
+updateHintDirection();
+window.addEventListener('resize', updateHintDirection);
 
 // ── Populate DOM with project data ────────────────────
 function populate(key) {
@@ -130,7 +145,7 @@ document.querySelectorAll('.collapsible-header').forEach(btn => {
 
     if (!isExpanded) {
       btn.setAttribute('aria-expanded', 'true');
-      icon.textContent = '−';
+      icon.textContent = '\u2212';
       body.style.height = body.scrollHeight + 'px';
       body.addEventListener('transitionend', () => {
         body.style.height = 'auto';
@@ -146,24 +161,28 @@ document.querySelectorAll('.collapsible-header').forEach(btn => {
   });
 });
 
-// ── Hover: magnetic y-axis drift ──────────────────────
+// ── Hover: magnetic y-axis drift (pointer devices only) ──
+if (window.matchMedia('(hover: hover)').matches) {
+  spines.forEach(spine => {
+    spine.addEventListener("mouseenter", () => {
+      if (spine.classList.contains("active")) return;
+      gsap.to(spine, { x: 8, duration: 0.25, ease: "power2.out" });
+    });
+
+    spine.addEventListener("mousemove", e => {
+      if (spine.classList.contains("active")) return;
+      const rect = spine.getBoundingClientRect();
+      const relY = (e.clientY - rect.top - rect.height / 2) * 0.18;
+      gsap.to(spine, { y: relY, duration: 0.3, ease: "power2.out" });
+    });
+
+    spine.addEventListener("mouseleave", () => {
+      if (spine.classList.contains("active")) return;
+      gsap.to(spine, { x: 0, y: 0, duration: 0.5, ease: "elastic.out(1, 0.55)" });
+    });
+  });
+}
+
 spines.forEach(spine => {
-  spine.addEventListener("mouseenter", () => {
-    if (spine.classList.contains("active")) return;
-    gsap.to(spine, { x: 8, duration: 0.25, ease: "power2.out" });
-  });
-
-  spine.addEventListener("mousemove", e => {
-    if (spine.classList.contains("active")) return;
-    const rect = spine.getBoundingClientRect();
-    const relY = (e.clientY - rect.top - rect.height / 2) * 0.18;
-    gsap.to(spine, { y: relY, duration: 0.3, ease: "power2.out" });
-  });
-
-  spine.addEventListener("mouseleave", () => {
-    if (spine.classList.contains("active")) return;
-    gsap.to(spine, { x: 0, y: 0, duration: 0.5, ease: "elastic.out(1, 0.55)" });
-  });
-
   spine.addEventListener("click", () => openProject(spine));
 });
