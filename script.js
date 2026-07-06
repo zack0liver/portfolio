@@ -126,7 +126,7 @@ function initFilter() {
         if (match) shown++;
       });
 
-      if (status) status.textContent = `Showing ${shown} of ${items.length} records`;
+      if (status) status.textContent = `Showing ${shown} of ${items.length} entries`;
     });
   });
 }
