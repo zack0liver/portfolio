@@ -105,52 +105,77 @@
 
       <!-- Work → External Consults -->
       <section class="panel panel--consults" id="consults" aria-labelledby="consultsTitle">
-        <header class="panel-head">
-          <h2 class="panel-title" id="consultsTitle">External Consults</h2>
-          <span class="pill pill--info">2 ORDERS</span>
-        </header>
-        <div class="panel-body order-list">
-          <a class="order" href="https://www.linkedin.com/in/zackoliver/" target="_blank" rel="noopener">
-            <span class="order-text">
-              <span class="order-name">LinkedIn</span>
-              <span class="order-sub">Request consult</span>
+        <h2 class="panel-heading">
+          <button type="button" class="panel-head panel-toggle" id="consultsToggle" aria-expanded="true" aria-controls="consultsCollapse">
+            <span class="panel-title" id="consultsTitle">External Consults</span>
+            <span class="panel-head-right">
+              <span class="pill pill--info">2 ORDERS</span>
+              <span class="panel-chevron" aria-hidden="true"></span>
             </span>
-            <span class="order-arrow" aria-hidden="true">↗</span>
-          </a>
-          <a class="order" href="https://drive.google.com/file/d/1kv2L6vdcM7MrPz89x0JwOyeT-WVgE5cF/view?usp=sharing" target="_blank" rel="noopener">
-            <span class="order-text">
-              <span class="order-name">Resume</span>
-              <span class="order-sub">Full chart · PDF</span>
-            </span>
-            <span class="order-arrow" aria-hidden="true">↗</span>
-          </a>
+          </button>
+        </h2>
+        <div class="panel-collapse" id="consultsCollapse">
+          <div class="panel-collapse-inner">
+            <div class="panel-body order-list">
+              <a class="order" href="https://www.linkedin.com/in/zackoliver/" target="_blank" rel="noopener">
+                <span class="order-text">
+                  <span class="order-name">LinkedIn</span>
+                  <span class="order-sub">Request consult</span>
+                </span>
+                <span class="order-arrow" aria-hidden="true">↗</span>
+              </a>
+              <a class="order" href="https://drive.google.com/file/d/1kv2L6vdcM7MrPz89x0JwOyeT-WVgE5cF/view?usp=sharing" target="_blank" rel="noopener">
+                <span class="order-text">
+                  <span class="order-name">Resume</span>
+                  <span class="order-sub">Full chart · PDF</span>
+                </span>
+                <span class="order-arrow" aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 
       <!-- Side Projects → Innovation Unit bed board -->
       <section class="panel panel--units" id="units" aria-labelledby="unitsTitle">
-        <header class="panel-head">
-          <h2 class="panel-title" id="unitsTitle">Innovation Unit — Bed Board</h2>
-          <span class="pill pill--ok"><span class="pill-dot" aria-hidden="true"></span>4 UNITS · ALL STABLE</span>
-        </header>
-        <div class="unit-board" id="unitBoard">
-          <noscript>
-            <ul class="noscript-units">
-              <li><a href="https://cltstartups.com/" target="_blank" rel="noopener">Charlotte Startup Index</a></li>
-              <li><a href="https://zack0liver.github.io/kettlebell-app/" target="_blank" rel="noopener">Kettlebell Genie</a></li>
-              <li><a href="https://zack0liver.github.io/recipe-clipper/" target="_blank" rel="noopener">NomBook</a></li>
-              <li><a href="https://zack0liver.github.io/spark-app/" target="_blank" rel="noopener">Spark App</a></li>
-            </ul>
-          </noscript>
+        <h2 class="panel-heading">
+          <button type="button" class="panel-head panel-toggle" id="unitsToggle" aria-expanded="true" aria-controls="unitsCollapse">
+            <span class="panel-title" id="unitsTitle">Innovation Unit — Bed Board</span>
+            <span class="panel-head-right">
+              <span class="pill pill--ok"><span class="pill-dot" aria-hidden="true"></span>4 UNITS · ALL STABLE</span>
+              <span class="panel-chevron" aria-hidden="true"></span>
+            </span>
+          </button>
+        </h2>
+        <div class="panel-collapse" id="unitsCollapse">
+          <div class="panel-collapse-inner">
+            <div class="unit-board" id="unitBoard">
+              <noscript>
+                <ul class="noscript-units">
+                  <li><a href="https://cltstartups.com/" target="_blank" rel="noopener">Charlotte Startup Index</a></li>
+                  <li><a href="https://zack0liver.github.io/kettlebell-app/" target="_blank" rel="noopener">Kettlebell Genie</a></li>
+                  <li><a href="https://zack0liver.github.io/recipe-clipper/" target="_blank" rel="noopener">NomBook</a></li>
+                  <li><a href="https://zack0liver.github.io/spark-app/" target="_blank" rel="noopener">Spark App</a></li>
+                </ul>
+              </noscript>
+            </div>
+          </div>
         </div>
       </section>
 
       <!-- Publications → Records Archive -->
       <section class="panel panel--records" id="records" aria-labelledby="recordsTitle">
-        <header class="panel-head">
-          <h2 class="panel-title" id="recordsTitle">Records Archive — Chart Review</h2>
-          <span class="pill pill--info">15 RECORDS</span>
-        </header>
+        <h2 class="panel-heading">
+          <button type="button" class="panel-head panel-toggle" id="recordsToggle" aria-expanded="true" aria-controls="recordsCollapse">
+            <span class="panel-title" id="recordsTitle">Records Archive — Chart Review</span>
+            <span class="panel-head-right">
+              <span class="pill pill--info">15 RECORDS</span>
+              <span class="panel-chevron" aria-hidden="true"></span>
+            </span>
+          </button>
+        </h2>
+        <div class="panel-collapse" id="recordsCollapse">
+        <div class="panel-collapse-inner">
         <div class="panel-body">
 
           <div class="validation-strip">
@@ -325,6 +350,8 @@
 
           </ol>
 
+        </div>
+        </div>
         </div>
       </section>
 

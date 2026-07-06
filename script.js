@@ -162,6 +162,26 @@ function initTheme() {
   });
 }
 
+/* ── Collapsible panels (Consults / Units / Records) ─── */
+function initCollapsibles() {
+  ["consults", "units", "records"].forEach(key => {
+    const toggle = document.getElementById(`${key}Toggle`);
+    const collapse = document.getElementById(`${key}Collapse`);
+    if (!toggle || !collapse) return;
+
+    // Collapsed by default only once JS has run; markup defaults to
+    // open so the content stays reachable without JS.
+    collapse.classList.add("is-collapsed");
+    toggle.setAttribute("aria-expanded", "false");
+
+    toggle.addEventListener("click", () => {
+      const isOpen = toggle.getAttribute("aria-expanded") === "true";
+      toggle.setAttribute("aria-expanded", String(!isOpen));
+      collapse.classList.toggle("is-collapsed", isOpen);
+    });
+  });
+}
+
 /* ── System boot entrance ──────────────────────────── */
 function bootAnimation() {
   if (prefersReducedMotion || !window.gsap) return;
@@ -180,4 +200,5 @@ startClock();
 countUp();
 initFilter();
 initTheme();
+initCollapsibles();
 bootAnimation();

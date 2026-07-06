@@ -402,6 +402,50 @@ main {
 
 .panel-body { padding: 20px; }
 
+/* ── Collapsible panel toggle (Consults / Units / Records) ── */
+.panel-heading { margin: 0; }
+
+.panel-toggle {
+  all: unset;
+  box-sizing: border-box;
+  width: 100%;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+
+.panel-toggle:hover { background: var(--border); }
+
+.panel-head-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.panel-chevron {
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid var(--text-3);
+  border-bottom: 2px solid var(--text-3);
+  transform: rotate(45deg);
+  transition: transform var(--transition);
+  flex-shrink: 0;
+}
+
+.panel-toggle[aria-expanded="true"] .panel-chevron {
+  transform: rotate(-135deg);
+}
+
+.panel-collapse {
+  display: grid;
+  grid-template-rows: 1fr;
+  transition: grid-template-rows var(--transition);
+}
+
+.panel-collapse.is-collapsed { grid-template-rows: 0fr; }
+
+.panel-collapse-inner { overflow: hidden; min-height: 0; }
+
 /* ── Attending Profile ────────────────────────────── */
 .profile-grid {
   display: grid;
