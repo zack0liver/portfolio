@@ -82,7 +82,8 @@ function countUp() {
   nums.forEach(el => {
     const target = parseInt(el.dataset.target, 10);
     const padLen = parseInt(el.dataset.pad || "0", 10);
-    const format = v => String(v).padStart(padLen, "0");
+    const suffix = el.dataset.suffix || "";
+    const format = v => String(v).padStart(padLen, "0") + suffix;
 
     if (prefersReducedMotion) {
       el.textContent = format(target);
