@@ -353,6 +353,7 @@ a.ext-link:hover {
 .spine[data-project="kettlebell"] .spine-binding { background-color: #e84b2e; }
 .spine[data-project="nombook"]    .spine-binding { background-color: #1f7a5a; }
 .spine[data-project="spark"]      .spine-binding { background-color: #8a6a3a; }
+.spine[data-project="arcade"]     .spine-binding { background-color: #6b3f78; }
 
 .spine .spine-body { background-color: var(--bg-paper); }
 
@@ -361,6 +362,7 @@ a.ext-link:hover {
 .spine[data-project="kettlebell"].active .spine-body::after { background: #e84b2e; }
 .spine[data-project="nombook"].active    .spine-body::after { background: #1f7a5a; }
 .spine[data-project="spark"].active      .spine-body::after { background: #8a6a3a; }
+.spine[data-project="arcade"].active     .spine-body::after { background: #6b3f78; }
 
 .spine-binding {
   width: 14px;
