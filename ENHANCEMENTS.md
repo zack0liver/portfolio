@@ -13,3 +13,12 @@
       different things (medical records vs. project pages). Candidate button copy:
       "Visit unit ↗" or "See rounds ↗". Button string lives in `renderUnits()` in
       `script.js`.
+
+## Future Enhancements
+
+- [ ] Zack's Arcade (`projects.arcade` in `script.js` / `healthcare.js`) currently
+      lists its stack as Claude Code, GitHub, HTML5 Canvas. The games also have an
+      online high-score leaderboard via Firebase (Firestore + Auth, dynamically
+      imported with an offline-safe fallback) -- once that feature feels more
+      built-out/prominent, consider adding "Firebase" to the stack tag and/or
+      mentioning the leaderboard in the project description.
