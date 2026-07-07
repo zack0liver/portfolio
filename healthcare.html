@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zack Oliver — Healthcare Mode</title>
+  <meta name="description" content="Zack Oliver — customer success and implementation leader at the intersection of healthcare, data, and AI." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="healthcare.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="statusbar">
+    <div class="statusbar-inner">
+      <div class="facility">
+        <span class="facility-mark" aria-hidden="true">+</span>
+        <span class="facility-name">OLIVER, Z. <span class="facility-sep" aria-hidden="true">—</span> <span class="facility-sub">OPERATIONS COMMAND CENTER</span></span>
+      </div>
+
+      <nav class="statusbar-nav" aria-label="Sections">
+        <a href="#profile">On Call</a>
+        <a href="#consults">Referrals</a>
+        <a href="#units">Clinic</a>
+        <a href="#records">Chart Review</a>
+      </nav>
+
+      <div class="statusbar-right">
+        <span class="clock" id="clock" aria-hidden="true"></span>
+        <span class="pill pill--ok pill--pulse"><span class="pill-dot" aria-hidden="true"></span>ALL SYSTEMS OPERATIONAL</span>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false">
+          <span class="theme-toggle-icon" aria-hidden="true">☾</span>
+          <span class="theme-toggle-label">Night shift</span>
+        </button>
+        <a class="theme-toggle mode-exit" href="index.html" aria-label="Discharge — return to the classic portfolio">
+          <span aria-hidden="true">←</span>
+          <span>Discharge</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <section class="hero" aria-labelledby="heroName">
+      <p class="hero-kicker">FACILITY DASHBOARD · SHIFT REPORT</p>
+      <h1 id="heroName">Zack Oliver</h1>
+      <p class="tagline">Customer success and implementation leader at the intersection of healthcare, data, and AI.</p>
+
+      <div class="ekg" aria-hidden="true">
+        <svg viewBox="0 0 600 40" preserveAspectRatio="none" focusable="false">
+          <path class="ekg-path" d="M0,20 L140,20 L155,20 L162,8 L170,32 L178,4 L188,36 L196,20 L210,20 L600,20"
+                fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" />
+        </svg>
+      </div>
+
+      <ul class="kpi-strip">
+        <li class="kpi">
+          <span class="kpi-num" data-target="50">50</span>
+          <span class="kpi-label">CS team scaled</span>
+        </li>
+        <li class="kpi">
+          <span class="kpi-num" data-target="15">15</span>
+          <span class="kpi-label">Publications</span>
+        </li>
+        <li class="kpi">
+          <span class="kpi-num" data-target="4" data-pad="2">04</span>
+          <span class="kpi-label">Active side projects</span>
+        </li>
+        <li class="kpi">
+          <span class="kpi-num" data-target="4" data-pad="2">04</span>
+          <span class="kpi-label">National press citations</span>
+        </li>
+      </ul>
+    </section>
+
+    <div class="board">
+
+      <!-- Bio → Attending on Call -->
+      <section class="panel panel--profile" id="profile" aria-labelledby="profileTitle">
+        <header class="panel-head">
+          <h2 class="panel-title" id="profileTitle">Attending on Call</h2>
+          <span class="pill pill--ok"><span class="pill-dot" aria-hidden="true"></span>ON DUTY</span>
+        </header>
+        <div class="panel-body profile-grid">
+          <dl class="id-band">
+            <div class="id-field">
+              <dt>Service line</dt>
+              <dd>Customer Success &amp; Implementation</dd>
+            </div>
+            <div class="id-field">
+              <dt>Specialty</dt>
+              <dd>Healthcare · Data · AI</dd>
+            </div>
+            <div class="id-field">
+              <dt>Prior rotations</dt>
+              <dd>RTI International · LeanTaaS</dd>
+            </div>
+          </dl>
+          <div class="clinical-notes">
+            <h3 class="notes-label">Clinical notes</h3>
+            <p class="bio-text">Healthcare tech implementation and CS leader who turns data into action and ideas into reality. I build AI-powered workflows for my teams and real software (like a fitness app) for fun. Always somewhere between a spreadsheet and a side project.</p>
+            <p class="bio-text">I didn't set out to be a startup person — but I caught the bug working on innovation policy at RTI International, then building CS from the ground up at LeanTaaS. I joined at Series C as an individual contributor, earned a seat on the management team, and scaled CS to a team of 50 as the company grew to unicorn status.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Work → Referral Network -->
+      <section class="panel panel--consults" id="consults" aria-labelledby="consultsTitle">
+        <h2 class="panel-heading">
+          <button type="button" class="panel-head panel-toggle" id="consultsToggle" aria-expanded="true" aria-controls="consultsCollapse">
+            <span class="panel-title" id="consultsTitle">Referral Network</span>
+            <span class="panel-head-right">
+              <span class="pill pill--info">2 OPEN REFERRALS</span>
+              <span class="panel-chevron" aria-hidden="true"></span>
+            </span>
+          </button>
+        </h2>
+        <div class="panel-collapse" id="consultsCollapse">
+          <div class="panel-collapse-inner">
+            <div class="panel-body order-list">
+              <a class="order" href="https://www.linkedin.com/in/zackoliver/" target="_blank" rel="noopener">
+                <span class="order-text">
+                  <span class="order-name">LinkedIn</span>
+                  <span class="order-sub">Request consult</span>
+                </span>
+                <span class="order-arrow" aria-hidden="true">↗</span>
+              </a>
+              <a class="order" href="https://drive.google.com/file/d/1kv2L6vdcM7MrPz89x0JwOyeT-WVgE5cF/view?usp=sharing" target="_blank" rel="noopener">
+                <span class="order-text">
+                  <span class="order-name">Resume</span>
+                  <span class="order-sub">Full chart · PDF</span>
+                </span>
+                <span class="order-arrow" aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Side Projects → After-Hours Clinic bed board -->
+      <section class="panel panel--units" id="units" aria-labelledby="unitsTitle">
+        <h2 class="panel-heading">
+          <button type="button" class="panel-head panel-toggle" id="unitsToggle" aria-expanded="true" aria-controls="unitsCollapse">
+            <span class="panel-title" id="unitsTitle">After-Hours Clinic</span>
+            <span class="panel-head-right">
+              <span class="pill pill--ok"><span class="pill-dot" aria-hidden="true"></span>4 BEDS · ALL STABLE</span>
+              <span class="panel-chevron" aria-hidden="true"></span>
+            </span>
+          </button>
+        </h2>
+        <div class="panel-collapse" id="unitsCollapse">
+          <div class="panel-collapse-inner">
+            <div class="unit-board" id="unitBoard">
+              <noscript>
+                <ul class="noscript-units">
+                  <li><a href="https://cltstartups.com/" target="_blank" rel="noopener">Charlotte Startup Index</a></li>
+                  <li><a href="https://zack0liver.github.io/kettlebell-app/" target="_blank" rel="noopener">Kettlebell Genie</a></li>
+                  <li><a href="https://zack0liver.github.io/recipe-clipper/" target="_blank" rel="noopener">NomBook</a></li>
+                  <li><a href="https://zack0liver.github.io/spark-app/" target="_blank" rel="noopener">Spark App</a></li>
+                </ul>
+              </noscript>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Publications → Chart Review -->
+      <section class="panel panel--records" id="records" aria-labelledby="recordsTitle">
+        <h2 class="panel-heading">
+          <button type="button" class="panel-head panel-toggle" id="recordsToggle" aria-expanded="true" aria-controls="recordsCollapse">
+            <span class="panel-title" id="recordsTitle">Chart Review</span>
+            <span class="panel-head-right">
+              <span class="pill pill--info">15 ENTRIES</span>
+              <span class="panel-chevron" aria-hidden="true"></span>
+            </span>
+          </button>
+        </h2>
+        <div class="panel-collapse" id="recordsCollapse">
+        <div class="panel-collapse-inner">
+        <div class="panel-body">
+
+          <div class="validation-strip">
+            <span class="validation-label">External validation — as cited in</span>
+            <span class="validation-outlets">
+              <span>The New York Times</span>
+              <span>NPR</span>
+              <span>Ars Technica</span>
+              <span>Becker's</span>
+            </span>
+          </div>
+
+          <div class="filter-bar" role="group" aria-label="Filter records by tag">
+            <button class="filter-btn" type="button" data-filter="all" aria-pressed="true">All <span class="filter-count">15</span></button>
+            <button class="filter-btn" type="button" data-filter="healthcare" aria-pressed="false">healthcare <span class="filter-count">5</span></button>
+            <button class="filter-btn" type="button" data-filter="startups" aria-pressed="false">startups <span class="filter-count">2</span></button>
+            <button class="filter-btn" type="button" data-filter="innovation" aria-pressed="false">innovation <span class="filter-count">8</span></button>
+            <span class="visually-hidden" aria-live="polite" id="filterStatus"></span>
+          </div>
+
+          <ol class="pub-list">
+
+            <li class="pub-item" data-tag="healthcare">
+              <span class="pub-year">2024</span>
+              <div class="pub-body">
+                <p class="pub-authors">Tobias, P., <strong>Oliver, Z. T.</strong>, &amp; Huang, Y.</p>
+                <p class="pub-title"><a class="pub-link" href="https://www.ons.org/publications-research/cjon/28/2/using-acuity-predict-oncology-infusion-center-daily-nurse-staffing" target="_blank" rel="noopener">Using Acuity to Predict Oncology Infusion Center Daily Nurse Staffing and Outcomes</a></p>
+                <p class="pub-venue">Clinical Journal of Oncology Nursing</p>
+              </div>
+              <span class="pub-tag pub-tag--healthcare">healthcare</span>
+            </li>
+
+            <li class="pub-item" data-tag="startups">
+              <span class="pub-year">2022–2024</span>
+              <div class="pub-body">
+                <p class="pub-authors"><strong>Oliver, Z.</strong></p>
+                <p class="pub-title"><a class="pub-link" href="https://cltstartups.substack.com/welcome" target="_blank" rel="noopener">Charlotte Startup Dispatch</a></p>
+                <p class="pub-venue">Substack</p>
+              </div>
+              <span class="pub-tag pub-tag--startups">startups</span>
+            </li>
+
+            <li class="pub-item" data-tag="healthcare">
+              <span class="pub-year">2023</span>
+              <div class="pub-body">
+                <p class="pub-authors"><strong>Oliver, Z.</strong> &amp; Pikulin, M.</p>
+                <p class="pub-title"><a class="pub-link" href="https://leantaas.com/wp-content/uploads/2023/07/LeanTaaS_INF_eBook_ConqueringVariability.pdf" target="_blank" rel="noopener">Expect the unexpected: how to conquer variability in your outpatient infusion center</a></p>
+                <p class="pub-venue">LeanTaaS Blog</p>
+              </div>
+              <span class="pub-tag pub-tag--healthcare">healthcare</span>
+            </li>
+
+            <li class="pub-item" data-tag="innovation">
+              <span class="pub-year">2020</span>
+              <div class="pub-body">
+                <p class="pub-authors">Link, A.N. &amp; <strong>Oliver, Z. T.</strong></p>
+                <p class="pub-title"><a class="pub-link" href="https://www.e-elgar.com/shop/usd/technology-transfer-and-us-public-sector-innovation-9781788976558.html" target="_blank" rel="noopener">Technology Transfer and US Public Sector Innovation</a></p>
+                <p class="pub-venue">Edward Elgar Publishing</p>
+              </div>
+              <span class="pub-tag pub-tag--innovation">innovation</span>
+            </li>
+
+            <li class="pub-item" data-tag="startups">
+              <span class="pub-year">2020</span>
+              <div class="pub-body">
+                <p class="pub-authors"><strong>Oliver, Z. T.</strong>, Hogan, M., &amp; Albats, E.</p>
+                <p class="pub-title"><a class="pub-link" href="https://brill.com/view/journals/thj/7/1/article-p83_4.xml" target="_blank" rel="noopener">Bridging the Knowledge and Business Ecosystems: Resources and Mechanisms for Regional Entrepreneurial Development</a></p>
+                <p class="pub-venue">Triple Helix, 7(1)</p>
+              </div>
+              <span class="pub-tag pub-tag--startups">startups</span>
+            </li>
+
+            <li class="pub-item" data-tag="innovation">
+              <span class="pub-year">2019</span>
+              <div class="pub-body">
+                <p class="pub-authors">O'Connor, A.C., Gallaher, M.P., Clark-Sutton, K., <strong>Oliver, Z. T.</strong>, et al.</p>
+                <p class="pub-title"><a class="pub-link" href="https://www.rti.org/publication/economic-benefits-global-positioning-system-gps" target="_blank" rel="noopener">Economic Benefits of the Global Positioning System (GPS)</a></p>
+                <p class="pub-venue">RTI International / NIST</p>
+              </div>
+              <span class="pub-tag pub-tag--innovation">innovation</span>
+            </li>
+
+            <li class="pub-item" data-tag="healthcare">
+              <span class="pub-year">2018</span>
+              <div class="pub-body">
+                <p class="pub-authors">Honeycutt, A.A., Allaire, B.T., Scott, T.J., <strong>Oliver, Z. T.</strong>, &amp; O'Connor, A.C.</p>
+                <p class="pub-title"><a class="pub-link" href="https://aspe.hhs.gov/sites/default/files/migrated_legacy_files//179772/DrugDevelopmentPolicyTools.pdf" target="_blank" rel="noopener">Costs and benefits of selected policy tools to promote drug development</a></p>
+                <p class="pub-venue">Prepared for ASPE, U.S. Department of Health and Human Services</p>
+              </div>
+              <span class="pub-tag pub-tag--healthcare">healthcare</span>
+            </li>
+
+            <li class="pub-item" data-tag="innovation">
+              <span class="pub-year">2018</span>
+              <div class="pub-body">
+                <p class="pub-authors">Chen, C., Link, A.N., &amp; <strong>Oliver, Z. T.</strong></p>
+                <p class="pub-title"><a class="pub-link" href="https://link.springer.com/article/10.1007/s11192-018-2665-2" target="_blank" rel="noopener">US federal laboratories and their research partners: a quantitative case study</a></p>
+                <p class="pub-venue">Scientometrics, 115, 501–517</p>
+              </div>
+              <span class="pub-tag pub-tag--innovation">innovation</span>
+            </li>
+
+            <li class="pub-item" data-tag="innovation">
+              <span class="pub-year">2018</span>
+              <div class="pub-body">
+                <p class="pub-authors"><strong>Oliver, Z.</strong>, Clark-Sutton, K., VanLear, S., et al.</p>
+                <p class="pub-title"><a class="pub-link" href="https://www.rti.org/publication/impact-facebooks-us-data-center-fleet" target="_blank" rel="noopener">The Impact of Facebook's U.S. Data Center Fleet</a></p>
+                <p class="pub-venue">RTI International</p>
+              </div>
+              <span class="pub-tag pub-tag--innovation">innovation</span>
+            </li>
+
+            <li class="pub-item" data-tag="healthcare">
+              <span class="pub-year">2017</span>
+              <div class="pub-body">
+                <p class="pub-authors">Walsh, A.C., Salem, M., <strong>Oliver, Z. T.</strong>, &amp; Clark-Sutton, K.</p>
+                <p class="pub-title"><a class="pub-link" href="https://link.springer.com/article/10.1007/s10961-017-9610-z" target="_blank" rel="noopener">Social and Economic Impact of the Commercialization of the Argus II Artificial Retina in the United States</a></p>
+                <p class="pub-venue">Journal of Technology Transfer</p>
+              </div>
+              <span class="pub-tag pub-tag--healthcare">healthcare</span>
+            </li>
+
+            <li class="pub-item" data-tag="innovation">
+              <span class="pub-year">2017</span>
+              <div class="pub-body">
+                <p class="pub-authors">Gallaher, M.P., Scott, T.J., <strong>Oliver, Z. T.</strong>, Clark-Sutton, K., &amp; Anderson, B.</p>
+                <p class="pub-title"><a class="pub-link" href="https://www.energy.gov/eere/buildings/downloads/benefit-cost-evaluation-us-department-energy-investment-hvac-water-heating" target="_blank" rel="noopener">Benefit-Cost Evaluation of US Department of Energy Investment in HVAC, Water Heating, and Appliance Technologies</a></p>
+                <p class="pub-venue">RTI International / U.S. Department of Energy</p>
+              </div>
+              <span class="pub-tag pub-tag--innovation">innovation</span>
+            </li>
+
+            <li class="pub-item" data-tag="healthcare">
+              <span class="pub-year">2017</span>
+              <div class="pub-body">
+                <p class="pub-authors"><strong>Oliver, Z.</strong>, Lim, B., &amp; Woolacott, J.</p>
+                <p class="pub-title"><a class="pub-link" href="https://www.ncha.org/wp-content/uploads/2018/03/2017-NC-Hospitals-Economic-Impact-Report-FINAL.pdf" target="_blank" rel="noopener">The Economic Impact of Hospitals and Health Systems in North Carolina</a></p>
+                <p class="pub-venue">North Carolina Healthcare Association / RTI International</p>
+              </div>
+              <span class="pub-tag pub-tag--healthcare">healthcare</span>
+            </li>
+
+            <li class="pub-item" data-tag="innovation">
+              <span class="pub-year">2016</span>
+              <div class="pub-body">
+                <p class="pub-authors">Gallaher, M.P., <strong>Oliver, Z. T.</strong>, Rieth, K.T., &amp; O'Connor, A.C.</p>
+                <p class="pub-title"><a class="pub-link" href="https://www.nist.gov/publications/economic-analysis-technology-infrastructure-needs-advanced-manufacturing-smart" target="_blank" rel="noopener">Economic Analysis of Technology Infrastructure Needs for Advanced Manufacturing: Smart Manufacturing</a></p>
+                <p class="pub-venue">NIST GCR 16-007</p>
+              </div>
+              <span class="pub-tag pub-tag--innovation">innovation</span>
+            </li>
+
+            <li class="pub-item" data-tag="innovation">
+              <span class="pub-year">2016</span>
+              <div class="pub-body">
+                <p class="pub-authors">Link, A.N., <strong>Oliver, Z. T.</strong>, &amp; O'Connor, A.C.</p>
+                <p class="pub-title"><a class="pub-link" href="https://nvlpubs.nist.gov/nistpubs/gcr/2016/NIST.GCR.16-005.pdf" target="_blank" rel="noopener">Economic Analysis of Technology Infrastructure Needs for Advanced Manufacturing: Advanced Robotics and Automation</a></p>
+                <p class="pub-venue">NIST GCR 16-005</p>
+              </div>
+              <span class="pub-tag pub-tag--innovation">innovation</span>
+            </li>
+
+            <li class="pub-item" data-tag="innovation">
+              <span class="pub-year">2016</span>
+              <div class="pub-body">
+                <p class="pub-authors"><strong>Oliver, Z. T.</strong></p>
+                <p class="pub-title"><a class="pub-link" href="https://www.darenc.gov/home/showpublisheddocument/1233/636179214120300000" target="_blank" rel="noopener">Dare County Economic Development Strategic Plan</a></p>
+                <p class="pub-venue">Dare County</p>
+              </div>
+              <span class="pub-tag pub-tag--innovation">innovation</span>
+            </li>
+
+          </ol>
+
+        </div>
+        </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="sys-footer">
+    <span class="sys-line">SOURCE: <a href="https://github.com/zack0liver" target="_blank" rel="noopener">GitHub</a></span>
+    <span class="sys-line sys-line--right">END OF SHIFT REPORT</span>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="healthcare.js"></script>
+</body>
+</html>

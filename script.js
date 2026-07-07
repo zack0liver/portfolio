@@ -29,176 +29,160 @@ const projects = {
   }
 };
 
-const prefersReducedMotion =
-  window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const spines      = document.querySelectorAll(".spine");
+const panelHint   = document.getElementById("panelHint");
+const panelContent = document.getElementById("panelContent");
 
-/* ── Innovation Unit bed board ─────────────────────── */
-function renderUnits() {
-  const board = document.getElementById("unitBoard");
-  if (!board) return;
+let currentKey   = null;
+let isAnimating  = false;
 
-  const cards = Object.values(projects).map((p, i) => {
-    const bed = String(i + 1).padStart(2, "0");
-    const stack = p.stack.map(s => `<span>${s}</span>`).join("");
-    return `
-      <article class="unit-card">
-        <div class="unit-top">
-          <span class="bed-num">BED ${bed}</span>
-          <span class="pill pill--ok"><span class="pill-dot" aria-hidden="true"></span>LIVE</span>
-        </div>
-        <span class="unit-dept">${p.tag}</span>
-        <h3 class="unit-title">${p.title}</h3>
-        <p class="unit-desc">${p.desc}</p>
-        <div class="unit-stack">${stack}</div>
-        <a class="unit-link" href="${p.url}" target="_blank" rel="noopener">Open chart <span aria-hidden="true">↗</span></a>
-      </article>`;
-  });
-
-  board.innerHTML = cards.join("");
+// ── Hint arrow direction (panel is below spines on mobile) ──
+function updateHintDirection() {
+  const arrow = panelHint.querySelector('.hint-arrow');
+  if (window.innerWidth <= 640) {
+    arrow.textContent = '\u2193';
+    arrow.classList.add('hint-arrow--down');
+  } else {
+    arrow.textContent = '\u2190';
+    arrow.classList.remove('hint-arrow--down');
+  }
 }
 
-/* ── Status-bar clock ──────────────────────────────── */
-function startClock() {
-  const clock = document.getElementById("clock");
-  if (!clock) return;
+updateHintDirection();
+window.addEventListener('resize', updateHintDirection);
 
-  const months = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
-  const pad = n => String(n).padStart(2, "0");
+// ── Populate DOM with project data ────────────────────
+function populate(key) {
+  const p = projects[key];
+  panelContent.querySelector(".panel-tag").textContent   = p.tag;
+  panelContent.querySelector(".panel-title").textContent = p.title;
+  panelContent.querySelector(".panel-desc").textContent  = p.desc;
+  panelContent.querySelector(".panel-stack").innerHTML   =
+    p.stack.map(s => `<span>${s}</span>`).join("");
+  panelContent.querySelector(".panel-link").href = p.url;
+}
 
-  function tick() {
-    const d = new Date();
-    clock.textContent =
-      `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())} · ${months[d.getMonth()]} ${pad(d.getDate())}`;
+// ── Main open function ────────────────────────────────
+function openProject(spine) {
+  const key = spine.dataset.project;
+  if (key === currentKey || isAnimating) return;
+  isAnimating = true;
+
+  const tl    = gsap.timeline({ onComplete: () => { isAnimating = false; } });
+  const items = panelContent.querySelectorAll(".panel-item");
+
+  // ── Spine states ────────────────────────────────────
+  spines.forEach(s => {
+    if (s.classList.contains("active")) {
+      s.classList.remove("active");
+      tl.to(s, { x: 0, duration: 0.3, ease: "power3.in" }, 0);
+    }
+    tl.to(s, { opacity: s === spine ? 1 : 0.5, duration: 0.3 }, 0);
+  });
+
+  spine.classList.add("active");
+
+  // Pull spine out with spring
+  tl.to(spine, {
+    x: 20,
+    duration: 0.55,
+    ease: "back.out(2.2)"
+  }, 0.05);
+
+  // ── Exit old content ─────────────────────────────────
+  if (currentKey !== null) {
+    tl.to(items, {
+      opacity: 0,
+      y: -10,
+      duration: 0.18,
+      stagger: 0.025,
+      ease: "power2.in"
+    }, 0.1);
+  } else {
+    // First open: fade out hint
+    tl.to(panelHint, { opacity: 0, x: -12, duration: 0.25, ease: "power2.in" }, 0.1);
   }
 
-  tick();
-  setInterval(tick, 1000);
-}
-
-/* ── KPI count-up ──────────────────────────────────── */
-function countUp() {
-  const nums = document.querySelectorAll(".kpi-num[data-target]");
-
-  nums.forEach(el => {
-    const target = parseInt(el.dataset.target, 10);
-    const padLen = parseInt(el.dataset.pad || "0", 10);
-    const format = v => String(v).padStart(padLen, "0");
-
-    if (prefersReducedMotion) {
-      el.textContent = format(target);
-      return;
-    }
-
-    const duration = 900;
-    const start = performance.now();
-
-    function frame(now) {
-      const t = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - t, 3);
-      el.textContent = format(Math.round(target * eased));
-      if (t < 1) requestAnimationFrame(frame);
-    }
-
-    el.textContent = format(0);
-    requestAnimationFrame(frame);
+  // ── Swap content mid-animation ────────────────────────
+  tl.add(() => {
+    populate(key);
+    panelHint.style.display = "none";
+    panelContent.style.display = "block";
+    // Reset items for entrance
+    gsap.set(items, { opacity: 0, y: 14 });
+    currentKey = key;
   });
+
+  // ── Panel wipe reveal (clip-path left → right) ────────
+  tl.fromTo(panelContent,
+    { clipPath: "inset(0 100% 0 0)" },
+    { clipPath: "inset(0 0% 0 0)", duration: 0.6, ease: "expo.inOut" }
+  );
+
+  // ── Stagger content items in ──────────────────────────
+  tl.to(items, {
+    opacity: 1,
+    y: 0,
+    stagger: 0.08,
+    duration: 0.4,
+    ease: "power2.out"
+  }, "-=0.28");
+
+  // ── Scroll panel into view on mobile ─────────────────
+  tl.add(() => {
+    if (window.innerWidth <= 640) {
+      panelContent.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+  }, "-=0.1");
 }
 
-/* ── Records filter ────────────────────────────────── */
-function initFilter() {
-  const buttons = document.querySelectorAll(".filter-btn");
-  const items = document.querySelectorAll(".pub-item");
-  const status = document.getElementById("filterStatus");
-  if (!buttons.length) return;
+// ── Collapsible sections ───────────────────────────────
+document.querySelectorAll('.collapsible-header').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const body = btn.nextElementSibling;
+    const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+    const icon = btn.querySelector('.collapsible-icon');
 
-  buttons.forEach(btn => {
-    btn.addEventListener("click", () => {
-      const filter = btn.dataset.filter;
-
-      buttons.forEach(b =>
-        b.setAttribute("aria-pressed", String(b === btn))
-      );
-
-      let shown = 0;
-      items.forEach(item => {
-        const match = filter === "all" || item.dataset.tag === filter;
-        item.hidden = !match;
-        if (match) shown++;
-      });
-
-      if (status) status.textContent = `Showing ${shown} of ${items.length} entries`;
-    });
-  });
-}
-
-/* ── Night Shift theme toggle ──────────────────────── */
-function initTheme() {
-  const toggle = document.getElementById("themeToggle");
-  if (!toggle) return;
-
-  const stored = localStorage.getItem("theme");
-  const systemNight = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  const initial = stored || (systemNight ? "night" : "day");
-
-  function apply(theme) {
-    if (theme === "night") {
-      document.documentElement.setAttribute("data-theme", "night");
+    if (!isExpanded) {
+      btn.setAttribute('aria-expanded', 'true');
+      icon.textContent = '\u2212';
+      body.style.height = body.scrollHeight + 'px';
+      body.addEventListener('transitionend', () => {
+        body.style.height = 'auto';
+      }, { once: true });
     } else {
-      document.documentElement.removeAttribute("data-theme");
+      body.style.height = body.scrollHeight + 'px';
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        body.style.height = '0';
+      }));
+      btn.setAttribute('aria-expanded', 'false');
+      icon.textContent = '+';
     }
-    toggle.setAttribute("aria-pressed", String(theme === "night"));
-    toggle.querySelector(".theme-toggle-icon").textContent =
-      theme === "night" ? "☀" : "☾";
-    toggle.querySelector(".theme-toggle-label").textContent =
-      theme === "night" ? "Day shift" : "Night shift";
-  }
-
-  apply(initial);
-
-  toggle.addEventListener("click", () => {
-    const next = document.documentElement.hasAttribute("data-theme") ? "day" : "night";
-    apply(next);
-    localStorage.setItem("theme", next);
   });
-}
+});
 
-/* ── Collapsible panels (Consults / Units / Records) ─── */
-function initCollapsibles() {
-  ["consults", "units", "records"].forEach(key => {
-    const toggle = document.getElementById(`${key}Toggle`);
-    const collapse = document.getElementById(`${key}Collapse`);
-    if (!toggle || !collapse) return;
+// ── Hover: magnetic y-axis drift (pointer devices only) ──
+if (window.matchMedia('(hover: hover)').matches) {
+  spines.forEach(spine => {
+    spine.addEventListener("mouseenter", () => {
+      if (spine.classList.contains("active")) return;
+      gsap.to(spine, { x: 8, duration: 0.25, ease: "power2.out" });
+    });
 
-    // Collapsed by default only once JS has run; markup defaults to
-    // open so the content stays reachable without JS.
-    collapse.classList.add("is-collapsed");
-    toggle.setAttribute("aria-expanded", "false");
+    spine.addEventListener("mousemove", e => {
+      if (spine.classList.contains("active")) return;
+      const rect = spine.getBoundingClientRect();
+      const relY = (e.clientY - rect.top - rect.height / 2) * 0.18;
+      gsap.to(spine, { y: relY, duration: 0.3, ease: "power2.out" });
+    });
 
-    toggle.addEventListener("click", () => {
-      const isOpen = toggle.getAttribute("aria-expanded") === "true";
-      toggle.setAttribute("aria-expanded", String(!isOpen));
-      collapse.classList.toggle("is-collapsed", isOpen);
+    spine.addEventListener("mouseleave", () => {
+      if (spine.classList.contains("active")) return;
+      gsap.to(spine, { x: 0, y: 0, duration: 0.5, ease: "elastic.out(1, 0.55)" });
     });
   });
 }
 
-/* ── System boot entrance ──────────────────────────── */
-function bootAnimation() {
-  if (prefersReducedMotion || !window.gsap) return;
-
-  const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
-
-  tl.from(".statusbar", { y: -14, opacity: 0, duration: 0.4 })
-    .from(".hero-kicker, .hero h1, .tagline", { y: 12, opacity: 0, duration: 0.45, stagger: 0.08 }, "-=0.15")
-    .from(".kpi", { y: 14, opacity: 0, duration: 0.4, stagger: 0.07 }, "-=0.2")
-    .from(".panel", { y: 18, opacity: 0, duration: 0.45, stagger: 0.1 }, "-=0.2")
-    .from(".sys-footer", { opacity: 0, duration: 0.4 }, "-=0.2");
-}
-
-renderUnits();
-startClock();
-countUp();
-initFilter();
-initTheme();
-initCollapsibles();
-bootAnimation();
+spines.forEach(spine => {
+  spine.addEventListener("click", () => openProject(spine));
+});
