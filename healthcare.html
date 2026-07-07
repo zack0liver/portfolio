@@ -81,6 +81,14 @@
           <span class="kpi-num" data-target="15">15</span>
           <span class="kpi-label">Publications</span>
         </li>
+        <li class="kpi">
+          <span class="kpi-num" data-target="30" data-prefix="$" data-suffix="M+">$30M+</span>
+          <span class="kpi-label">Managed ARR</span>
+        </li>
+        <li class="kpi">
+          <span class="kpi-num" data-target="26">26</span>
+          <span class="kpi-label">People in my vertical</span>
+        </li>
       </ul>
     </section>
 
@@ -88,10 +96,17 @@
 
       <!-- Bio → Attending on Call -->
       <section class="panel panel--profile" id="profile" aria-labelledby="profileTitle">
-        <header class="panel-head">
-          <h2 class="panel-title" id="profileTitle">Attending on Call</h2>
-          <span class="pill pill--ok"><span class="pill-dot" aria-hidden="true"></span>ON DUTY</span>
-        </header>
+        <h2 class="panel-heading">
+          <button type="button" class="panel-head panel-toggle" id="profileToggle" aria-expanded="true" aria-controls="profileCollapse">
+            <span class="panel-title" id="profileTitle">Attending on Call</span>
+            <span class="panel-head-right">
+              <span class="pill pill--ok"><span class="pill-dot" aria-hidden="true"></span>ON DUTY</span>
+              <span class="panel-chevron" aria-hidden="true"></span>
+            </span>
+          </button>
+        </h2>
+        <div class="panel-collapse" id="profileCollapse">
+        <div class="panel-collapse-inner">
         <div class="panel-body profile-grid">
           <dl class="id-band">
             <div class="id-field">
@@ -120,6 +135,8 @@
             <p class="bio-text">Healthcare tech implementation and CS leader who turns data into action and ideas into reality. I've worked across 5 EHR platforms, with the deepest expertise in Epic. I build AI-powered workflows for my teams and real software (like a fitness app) for fun. Always somewhere between a spreadsheet and a side project.</p>
             <p class="bio-text">I didn't set out to be a startup person — but I caught the bug working on innovation policy at RTI International, then building CS from the ground up at LeanTaaS. I joined at Series C as an individual contributor, earned a seat on the management team, and scaled CS to a team of 50 as the company grew to unicorn status.</p>
           </div>
+        </div>
+        </div>
         </div>
       </section>
 

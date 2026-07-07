@@ -82,8 +82,9 @@ function countUp() {
   nums.forEach(el => {
     const target = parseInt(el.dataset.target, 10);
     const padLen = parseInt(el.dataset.pad || "0", 10);
+    const prefix = el.dataset.prefix || "";
     const suffix = el.dataset.suffix || "";
-    const format = v => String(v).padStart(padLen, "0") + suffix;
+    const format = v => prefix + String(v).padStart(padLen, "0") + suffix;
 
     if (prefersReducedMotion) {
       el.textContent = format(target);
@@ -163,17 +164,27 @@ function initTheme() {
   });
 }
 
-/* ── Collapsible panels (Consults / Units / Records) ─── */
+/* ── Collapsible panels (Profile / Consults / Units / Records) ─── */
 function initCollapsibles() {
-  ["consults", "units", "records"].forEach(key => {
+  const sections = [
+    { key: "profile", collapseByDefault: false },
+    { key: "consults", collapseByDefault: true },
+    { key: "units", collapseByDefault: true },
+    { key: "records", collapseByDefault: true },
+  ];
+
+  sections.forEach(({ key, collapseByDefault }) => {
     const toggle = document.getElementById(`${key}Toggle`);
     const collapse = document.getElementById(`${key}Collapse`);
     if (!toggle || !collapse) return;
 
-    // Collapsed by default only once JS has run; markup defaults to
-    // open so the content stays reachable without JS.
-    collapse.classList.add("is-collapsed");
-    toggle.setAttribute("aria-expanded", "false");
+    // Collapsed by default only once JS has run (and only for sections
+    // that want it); markup defaults to open so content stays reachable
+    // without JS.
+    if (collapseByDefault) {
+      collapse.classList.add("is-collapsed");
+      toggle.setAttribute("aria-expanded", "false");
+    }
 
     toggle.addEventListener("click", () => {
       const isOpen = toggle.getAttribute("aria-expanded") === "true";
