@@ -4,7 +4,8 @@ const projects = {
     title: "Charlotte Startup Index",
     desc: "A searchable directory for discovering startups in the Charlotte area. Filter by industry, stage, and more.",
     stack: ["JavaScript", "Google Sheets", "HTML/CSS"],
-    url: "https://cltstartups.com/"
+    url: "https://cltstartups.com/",
+    status: "development"
   },
   kettlebell: {
     tag: "Fitness",
@@ -32,7 +33,8 @@ const projects = {
     title: "Zack's Arcade",
     desc: "A collection of custom retro-style arcade games built for 90s mall-arcade nostalgia.",
     stack: ["Claude Code", "GitHub", "HTML5 Canvas"],
-    url: "https://zack0liver.github.io/games"
+    url: "https://zack0liver.github.io/games",
+    status: "development"
   }
 };
 
@@ -47,11 +49,14 @@ function renderUnits() {
   const cards = Object.values(projects).map((p, i) => {
     const bed = String(i + 1).padStart(2, "0");
     const stack = p.stack.map(s => `<span>${s}</span>`).join("");
+    const statusPill = p.status === "development"
+      ? '<span class="pill pill--warn"><span class="pill-dot" aria-hidden="true"></span>IN TREATMENT</span>'
+      : '<span class="pill pill--ok"><span class="pill-dot" aria-hidden="true"></span>LIVE</span>';
     return `
       <article class="unit-card">
         <div class="unit-top">
           <span class="bed-num">BED ${bed}</span>
-          <span class="pill pill--ok"><span class="pill-dot" aria-hidden="true"></span>LIVE</span>
+          ${statusPill}
         </div>
         <span class="unit-dept">${p.tag}</span>
         <h3 class="unit-title">${p.title}</h3>
