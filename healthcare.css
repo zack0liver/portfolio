@@ -409,7 +409,11 @@ main {
 .panel-heading { margin: 0; }
 
 .panel-toggle {
-  all: unset;
+  appearance: none;
+  -webkit-appearance: none;
+  border: none;
+  margin: 0;
+  text-align: left;
   box-sizing: border-box;
   width: 100%;
   cursor: pointer;
