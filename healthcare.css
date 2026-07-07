@@ -551,19 +551,19 @@ main {
 /* ── Innovation Unit bed board ────────────────────── */
 .unit-board {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  padding: 20px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  padding: 16px;
 }
 
 .unit-card {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 6px;
   background: var(--surface-2);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 16px 18px;
+  padding: 12px 14px;
   transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
 }
 .unit-card:hover {
@@ -576,12 +576,12 @@ main {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
+  gap: 8px;
 }
 
 .bed-num {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.62rem;
   font-weight: 600;
   letter-spacing: 0.1em;
   color: var(--text-3);
@@ -589,25 +589,25 @@ main {
 
 .unit-dept {
   font-family: var(--font-mono);
-  font-size: 0.62rem;
+  font-size: 0.58rem;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--accent-strong);
   background: var(--accent-soft);
-  padding: 3px 9px;
+  padding: 2px 8px;
   border-radius: var(--radius-pill);
   width: fit-content;
 }
 
 .unit-title {
-  font-size: 1.12rem;
+  font-size: 0.98rem;
   font-weight: 600;
   letter-spacing: -0.01em;
 }
 
 .unit-desc {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: var(--text-2);
   flex: 1;
 }
@@ -615,31 +615,31 @@ main {
 .unit-stack {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 5px;
 }
 
 .unit-stack span {
   font-family: var(--font-mono);
-  font-size: 0.64rem;
+  font-size: 0.6rem;
   color: var(--text-2);
   background: var(--surface);
   border: 1px solid var(--border);
-  padding: 2px 8px;
+  padding: 2px 6px;
   border-radius: var(--radius-sm);
 }
 
 .unit-link {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
   width: fit-content;
-  margin-top: 4px;
-  font-size: 0.84rem;
+  margin-top: 2px;
+  font-size: 0.76rem;
   font-weight: 600;
   color: #fff;
   background: var(--accent);
   text-decoration: none;
-  padding: 7px 14px;
+  padding: 5px 11px;
   border-radius: var(--radius-sm);
   transition: background var(--transition);
 }
@@ -811,7 +811,7 @@ main {
 @media (max-width: 768px) {
   .board { grid-template-columns: 1fr; }
   .kpi-strip { grid-template-columns: repeat(2, 1fr); }
-  .unit-board { grid-template-columns: 1fr; }
+  .unit-board { grid-template-columns: repeat(2, 1fr); }
   .profile-grid { grid-template-columns: 1fr; }
   .id-band {
     border-right: none;
@@ -826,6 +826,7 @@ main {
 @media (max-width: 480px) {
   main { padding: 32px 14px 40px; }
   .panel-body, .unit-board { padding: 16px 14px; }
+  .unit-board { grid-template-columns: 1fr; }
   .facility-sub { display: none; }
   .pub-item { grid-template-columns: 1fr; gap: 4px; padding: 14px 0; }
   .pub-year { padding-top: 0; }
