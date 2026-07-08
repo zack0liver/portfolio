@@ -193,6 +193,13 @@ a { color: var(--accent-strong); }
   display: flex;
   align-items: center;
   gap: 12px;
+  flex: 1;
+}
+
+.statusbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   margin-left: auto;
 }
 
