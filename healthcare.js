@@ -214,6 +214,10 @@ function initCollapsibles() {
       const isOpen = toggle.getAttribute("aria-expanded") === "true";
       toggle.setAttribute("aria-expanded", String(!isOpen));
       collapse.classList.toggle("is-collapsed", isOpen);
+      // Force an immediate reflow so the grid-template-rows change is
+      // committed and painted right away, instead of sometimes sitting
+      // blank until some later interaction happens to trigger a repaint.
+      void collapse.offsetHeight;
     });
   });
 }
@@ -264,6 +268,10 @@ function initNavScroll() {
       if (toggle && collapse && wasCollapsed) {
         toggle.setAttribute("aria-expanded", "true");
         collapse.classList.remove("is-collapsed");
+        // Force an immediate reflow so the change is committed and painted
+        // right away, instead of sometimes sitting blank until some later
+        // interaction happens to trigger a repaint.
+        void collapse.offsetHeight;
       }
 
       if (wasCollapsed) {
