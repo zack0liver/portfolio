@@ -218,6 +218,73 @@ function initCollapsibles() {
   });
 }
 
+/* ── Nav tabs: expand target section + scroll under sticky header ── */
+function initNavScroll() {
+  const HEADER_GAP = 16;
+
+  function scrollToSection(section) {
+    const headerHeight = document.querySelector(".statusbar").getBoundingClientRect().height;
+    const targetTop = section.getBoundingClientRect().top + window.scrollY - headerHeight - HEADER_GAP;
+    const clampedTarget = Math.max(targetTop, 0);
+
+    // A section near the bottom of the page (or any section when the ones
+    // after it are still collapsed) may not have enough content below it
+    // for the browser to scroll it flush under the header -- scrollTo()
+    // silently clamps to the document's current max scroll instead. Grow
+    // a spacer just enough to cover the shortfall. It's never shrunk back:
+    // removing it after the scroll settles would make the document too
+    // short to hold that scroll position, snapping the page back down.
+    const spacer = document.getElementById("scrollSpacer");
+    if (spacer) {
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      if (clampedTarget > maxScroll) {
+        const currentHeight = spacer.getBoundingClientRect().height;
+        spacer.style.height = (currentHeight + (clampedTarget - maxScroll) + 4) + "px";
+      }
+    }
+
+    window.scrollTo({
+      top: clampedTarget,
+      behavior: prefersReducedMotion ? "auto" : "smooth",
+    });
+  }
+
+  document.querySelectorAll('.statusbar-nav a[href^="#"]').forEach(link => {
+    link.addEventListener("click", e => {
+      const id = link.getAttribute("href").slice(1);
+      const section = document.getElementById(id);
+      if (!section) return;
+      e.preventDefault();
+      history.pushState(null, "", `#${id}`);
+
+      const toggle = document.getElementById(`${id}Toggle`);
+      const collapse = document.getElementById(`${id}Collapse`);
+      const wasCollapsed = collapse && collapse.classList.contains("is-collapsed");
+
+      if (toggle && collapse && wasCollapsed) {
+        toggle.setAttribute("aria-expanded", "true");
+        collapse.classList.remove("is-collapsed");
+      }
+
+      if (wasCollapsed) {
+        // The document only grows to its full expanded height once the
+        // collapse's grid-template-rows transition finishes; scrolling
+        // before then gets clamped to the still-short scrollable range.
+        let done = false;
+        const runOnce = () => {
+          if (done) return;
+          done = true;
+          scrollToSection(section);
+        };
+        collapse.addEventListener("transitionend", runOnce, { once: true });
+        setTimeout(runOnce, 250); // fallback in case transitionend doesn't fire
+      } else {
+        scrollToSection(section);
+      }
+    });
+  });
+}
+
 /* ── System boot entrance ──────────────────────────── */
 function bootAnimation() {
   if (prefersReducedMotion || !window.gsap) return;
@@ -237,4 +304,5 @@ countUp();
 initFilter();
 initTheme();
 initCollapsibles();
+initNavScroll();
 bootAnimation();
