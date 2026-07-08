@@ -166,22 +166,27 @@ a { color: var(--accent-strong); }
 
 .statusbar-nav {
   display: flex;
-  gap: 4px;
-  margin-right: auto;
+  gap: 2px;
+  margin-left: auto;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  padding: 3px;
 }
 
 .statusbar-nav a {
-  font-size: 0.82rem;
-  font-weight: 500;
+  font-size: 0.78rem;
+  font-weight: 600;
   color: var(--text-2);
   text-decoration: none;
-  padding: 5px 10px;
-  border-radius: var(--radius-sm);
-  transition: background var(--transition), color var(--transition);
+  padding: 5px 14px;
+  border-radius: var(--radius-pill);
+  transition: background var(--transition), color var(--transition), box-shadow var(--transition);
 }
 .statusbar-nav a:hover {
-  background: var(--surface-2);
+  background: var(--surface);
   color: var(--text);
+  box-shadow: var(--shadow-1);
 }
 
 .statusbar-right {
@@ -804,7 +809,14 @@ main {
 
 /* ── Responsive ───────────────────────────────────── */
 @media (max-width: 880px) {
-  .statusbar-nav { order: 3; width: 100%; margin-right: 0; }
+  .statusbar-nav {
+    order: 3;
+    width: 100%;
+    margin-left: 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .statusbar-nav a { white-space: nowrap; flex-shrink: 0; }
   .statusbar-right { margin-left: auto; }
   .clock { display: none; }
 }
