@@ -287,7 +287,7 @@ main {
 }
 
 .hero h1 {
-  font-size: clamp(2.2rem, 5.5vw, 3.4rem);
+  font-size: clamp(1.9rem, 4.6vw, 2.7rem);
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.1;
@@ -297,9 +297,10 @@ main {
   margin-top: 10px;
   color: var(--text-2);
   font-size: 1.06rem;
-  max-width: 560px;
+  max-width: 800px;
   margin-left: auto;
   margin-right: auto;
+  white-space: normal;
 }
 
 .ekg {

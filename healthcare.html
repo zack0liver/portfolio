@@ -23,8 +23,8 @@
       <nav class="statusbar-nav" aria-label="Sections">
         <a href="#profile">On Call</a>
         <a href="#consults">Referrals</a>
-        <a href="#units">Clinic</a>
-        <a href="#records">Chart Review</a>
+        <a href="#units">After Hours</a>
+        <a href="#records">Research</a>
       </nav>
 
       <div class="statusbar-right">
@@ -34,9 +34,9 @@
           <span class="theme-toggle-icon" aria-hidden="true">☾</span>
           <span class="theme-toggle-label">Night shift</span>
         </button>
-        <a class="theme-toggle mode-exit" href="index.html" aria-label="Discharge — return to the classic portfolio">
+        <a class="theme-toggle mode-exit" href="index.html" aria-label="Sign off — return to the classic portfolio">
           <span aria-hidden="true">←</span>
-          <span>Discharge</span>
+          <span>Sign Off</span>
         </a>
       </div>
     </div>
@@ -45,7 +45,7 @@
   <main id="main">
 
     <section class="hero" aria-labelledby="heroName">
-      <p class="hero-kicker">FACILITY DASHBOARD · SHIFT REPORT</p>
+      <p class="hero-kicker">FACILITY DASHBOARD</p>
       <h1 id="heroName">Zack Oliver</h1>
       <p class="tagline">Customer success and implementation leader at the intersection of healthcare, data, and AI.</p>
 
@@ -173,13 +173,13 @@
         </div>
       </section>
 
-      <!-- Side Projects → After-Hours Clinic bed board -->
+      <!-- Side Projects → After Hour Unit bed board -->
       <section class="panel panel--units" id="units" aria-labelledby="unitsTitle">
         <h2 class="panel-heading">
           <button type="button" class="panel-head panel-toggle" id="unitsToggle" aria-expanded="true" aria-controls="unitsCollapse">
-            <span class="panel-title" id="unitsTitle">After-Hours Clinic</span>
+            <span class="panel-title" id="unitsTitle">After Hour Unit</span>
             <span class="panel-head-right">
-              <span class="pill pill--ok"><span class="pill-dot" aria-hidden="true"></span>5 BEDS · ALL STABLE</span>
+              <span class="pill pill--info" id="unitsStatusPill">5 BEDS</span>
               <span class="panel-chevron" aria-hidden="true"></span>
             </span>
           </button>
@@ -201,11 +201,11 @@
         </div>
       </section>
 
-      <!-- Publications → Chart Review -->
+      <!-- Publications → Research Unit -->
       <section class="panel panel--records" id="records" aria-labelledby="recordsTitle">
         <h2 class="panel-heading">
           <button type="button" class="panel-head panel-toggle" id="recordsToggle" aria-expanded="true" aria-controls="recordsCollapse">
-            <span class="panel-title" id="recordsTitle">Chart Review</span>
+            <span class="panel-title" id="recordsTitle">Research Unit</span>
             <span class="panel-head-right">
               <span class="pill pill--info">15 ENTRIES</span>
               <span class="panel-chevron" aria-hidden="true"></span>

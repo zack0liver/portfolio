@@ -46,12 +46,24 @@ function renderUnits() {
   const board = document.getElementById("unitBoard");
   if (!board) return;
 
-  const cards = Object.values(projects).map((p, i) => {
+  const all = Object.values(projects);
+  const inTreatment = all.filter(p => p.status === "development").length;
+  const stable = all.length - inTreatment;
+
+  const statusPillEl = document.getElementById("unitsStatusPill");
+  if (statusPillEl) {
+    const parts = [];
+    if (stable > 0) parts.push(`${stable} STABLE`);
+    if (inTreatment > 0) parts.push(`${inTreatment} IN TREATMENT`);
+    statusPillEl.textContent = parts.join(" · ");
+  }
+
+  const cards = all.map((p, i) => {
     const bed = String(i + 1).padStart(2, "0");
     const stack = p.stack.map(s => `<span>${s}</span>`).join("");
     const statusPill = p.status === "development"
       ? '<span class="pill pill--warn"><span class="pill-dot" aria-hidden="true"></span>IN TREATMENT</span>'
-      : '<span class="pill pill--ok"><span class="pill-dot" aria-hidden="true"></span>LIVE</span>';
+      : '<span class="pill pill--ok"><span class="pill-dot" aria-hidden="true"></span>STABLE</span>';
     return `
       <article class="unit-card">
         <div class="unit-top">
@@ -179,7 +191,7 @@ function initTheme() {
 /* ── Collapsible panels (Profile / Consults / Units / Records) ─── */
 function initCollapsibles() {
   const sections = [
-    { key: "profile", collapseByDefault: false },
+    { key: "profile", collapseByDefault: true },
     { key: "consults", collapseByDefault: true },
     { key: "units", collapseByDefault: true },
     { key: "records", collapseByDefault: true },
