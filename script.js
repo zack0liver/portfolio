@@ -29,7 +29,7 @@ const projects = {
   },
   arcade: {
     tag: "Fun",
-    title: "Zack's Arcade",
+    title: "Retro Arcade Games",
     desc: "A collection of custom retro-style arcade games built for 90s mall-arcade nostalgia.",
     stack: ["Claude Code", "GitHub", "HTML5 Canvas"],
     url: "https://zack0liver.github.io/games"
